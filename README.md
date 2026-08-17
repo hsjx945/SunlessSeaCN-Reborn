@@ -2,14 +2,14 @@
 
 **Sunless Sea 中文汉化、Chinese localization、BepInEx 文本与 UI 补丁**。本仓库为《Sunless Sea》（中文常译：**无光之海**）制作可安装的社区中文兼容包，包含完整文本 addon、中文 UI 插件，以及 Windows/macOS 一键安装与卸载脚本。
 
-当前兼容包版本：**6.0.0**。项目不包含《Sunless Sea》游戏本体或游戏原始资源，使用前请先通过 Steam 等合法渠道拥有并安装游戏。
+当前兼容包版本：**6.0.1**。项目不包含《Sunless Sea》游戏本体或游戏原始资源，使用前请先通过 Steam 等合法渠道拥有并安装游戏。
 
 ## 快速下载
 
 从 [GitHub Releases](https://github.com/hsjx945/SunlessSeaCN-Reborn/releases/latest) 下载对应平台的压缩包：
 
-- `SunlessSeaCN-Windows-v6.0.0.zip`：Windows 一键安装、备份、重复安装和卸载恢复。
-- `SunlessSeaCN-macOS-v6.0.0.zip`：macOS universal 安装/卸载脚本；macOS 实机运行仍需首次验证。
+- `SunlessSeaCN-Windows-v6.0.1.zip`：Windows 一键安装、备份、重复安装和卸载恢复。
+- `SunlessSeaCN-macOS-v6.0.1.zip`：macOS universal 安装/卸载脚本；修复 ZIP 解压后 `.command` 执行权限丢失问题，macOS 实机运行仍需首次验证。
 
 ## 汉化实机截图
 
@@ -19,7 +19,7 @@
 
 ## 已验证的游戏版本与兼容范围
 
-下面是本项目实际测试所对应的游戏版本，不要把补丁版本 `6.0.0` 误认为游戏版本号：
+下面是本项目实际测试所对应的游戏版本，不要把补丁版本 `6.0.1` 误认为游戏版本号：
 
 本版本对应 [Steam 官方公告《Maintenance update》](https://store.steampowered.com/news/app/304650/view/714534317091455363)（2026 年 7 月 29 日）。公告说明该次更新升级了 Sunless Sea 的 Unity 版本，并修复了部分发售后内容无法正确同步到存档的问题；公告记录的 Steam BuildID 是 `24437295`。本项目正是针对这个更新后的版本制作并完成 Windows 实机验证。
 
@@ -36,7 +36,7 @@
 | 文本内容 | `Sunless_sea_CN_reborn`，17 个 JSON addon 文件 |
 | DLC | Zubmariner（潜艇 DLC）文本随完整 addon 打包；DLC 本身需另购并安装 |
 
-Windows 实机日志已确认 BepInEx 和中文插件正常加载，并应用 Sunless Sea 的 Harmony 补丁。若 Steam 将游戏更新到新的 BuildID 或 Unity 主版本，**不能保证 6.0.0 仍然可用**；遇到插件不加载、启动崩溃或文本失效时，应等待本仓库发布兼容更新。
+Windows 实机日志已确认 BepInEx 和中文插件正常加载，并应用 Sunless Sea 的 Harmony 补丁。若 Steam 将游戏更新到新的 BuildID 或 Unity 主版本，**不能保证 6.0.1 仍然可用**；遇到插件不加载、启动崩溃或文本失效时，应等待本仓库发布兼容更新。
 
 macOS 安装包使用 BepInEx 5.4.23.5 macOS universal loader，已通过脚本语法、权限和包结构检查；由于当前没有 Mac 实机，本仓库暂不宣称 macOS 运行时已经验证。
 
@@ -53,7 +53,7 @@ macOS 安装包使用 BepInEx 5.4.23.5 macOS universal loader，已通过脚本�
 
 ### Windows
 
-1. 解压 `SunlessSeaCN-Windows-v6.0.0.zip`。
+1. 解压 `SunlessSeaCN-Windows-v6.0.1.zip`。
 2. 双击 `Install-SunlessSeaCN.cmd`。
 3. 启动 Steam 中的 Sunless Sea。
 
@@ -67,15 +67,19 @@ macOS 安装包使用 BepInEx 5.4.23.5 macOS universal loader，已通过脚本�
 
 ### macOS
 
-1. 解压 `SunlessSeaCN-macOS-v6.0.0.zip`。
-2. 双击 `Install-SunlessSeaCN.command`。
-3. 启动 Steam 中的 Sunless Sea。
+1. 解压 `SunlessSeaCN-macOS-v6.0.1.zip`。安装包可以放在下载文件夹、桌面或其他本地目录，不需要放进游戏目录。
+2. 双击 `Install-SunlessSeaCN.command`；脚本会把 `payload/game` 安装到包含 `Sunless Sea.app` 的游戏根目录，把 `payload/data` 安装到玩家数据目录。
+3. 在 Steam 的 Sunless Sea“属性 → 通用 → 启动选项”中设置 `./run_bepinex.sh %command%`，再启动游戏。
 
-脚本会探测 Steam 的 `Sunless Sea.app` 和常见 Unity 数据目录。若 macOS 阻止脚本，右键选择“打开”，或在终端执行：
+脚本会探测 Steam 的 `Sunless Sea.app` 和常见 Unity 数据目录。这里的游戏根目录是包含 `Sunless Sea.app` 的 `common/SunlessSea` 文件夹，不是 `Sunless Sea.app/Contents`。若 Finder 报“无法运行，因为你没有正确的访问权限”，请在解压后的安装包目录执行：
 
 ```bash
-chmod u+x *.command *.sh
+chmod u+x Install-SunlessSeaCN.command Install-SunlessSeaCN.sh Uninstall-SunlessSeaCN.command Uninstall-SunlessSeaCN.sh
+xattr -dr com.apple.quarantine .
+./Install-SunlessSeaCN.command
 ```
+
+也可以直接用 `bash Install-SunlessSeaCN.sh` 绕过文件执行位问题。若手动安装，只需把 `payload/game` 的内容复制到游戏根目录，把 `payload/data` 的内容复制到玩家数据目录；不要复制到 `.app/Contents`。
 
 卸载时双击 `Uninstall-SunlessSeaCN.command`。必要时可只对游戏目录移除隔离属性：
 

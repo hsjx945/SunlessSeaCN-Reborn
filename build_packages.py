@@ -12,7 +12,7 @@ BUILD = ROOT / ".build"
 WIN_GAME = Path(r"E:\Program Files (x86)\Steam\steamapps\common\SunlessSea")
 WIN_DATA = Path(r"C:\Users\Lenovo\AppData\LocalLow\Failbetter Games\Sunless Sea")
 MAC_BASE = BUILD / "mac"
-VERSION = "6.0.0"
+VERSION = "6.0.1"
 
 
 WIN_PS1 = r'''param(
@@ -242,6 +242,7 @@ printf 'GAME_ROOT=%s\nDATA_ROOT=%s\nBACKUP_GAME=%s\nBACKUP_DATA=%s\n' "$GAME_ROO
 echo "Sunless Sea 中文补丁已安装。"
 echo "游戏目录: $GAME_ROOT"
 echo "数据目录: $DATA_ROOT"
+echo "Steam 启动选项: ./run_bepinex.sh %command%"
 echo "如 Steam 阻止脚本运行，请在终端执行: xattr -dr com.apple.quarantine \"$GAME_ROOT\""
 '''
 
@@ -286,13 +287,13 @@ SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 exec "$SCRIPT_DIR/Uninstall-SunlessSeaCN.sh"
 '''
 
-WIN_README = """Sunless Sea 中文补丁 6.0.0 - Windows\n\n安装：双击 Install-SunlessSeaCN.cmd。Steam 安装目录找不到时，可在 PowerShell 中设置：\n  $env:SUNLESS_SEA_GAME_ROOT='D:\\SteamLibrary\\steamapps\\common\\SunlessSea'\n  .\\Install-SunlessSeaCN.ps1\n\n卸载：双击 Uninstall-SunlessSeaCN.cmd。安装器会在覆盖已有文件前创建 SunlessSeaCN-backup-* 备份。\n\n本包包含：BepInEx 5.4.23.5、SunlessSeaChineseTranslation 6.0.0、完整文本 addon。\n"""
+WIN_README = """Sunless Sea 中文补丁 6.0.1 - Windows\n\n安装：双击 Install-SunlessSeaCN.cmd。Steam 安装目录找不到时，可在 PowerShell 中设置：\n  $env:SUNLESS_SEA_GAME_ROOT='D:\\SteamLibrary\\steamapps\\common\\SunlessSea'\n  .\\Install-SunlessSeaCN.ps1\n\n卸载：双击 Uninstall-SunlessSeaCN.cmd。安装器会在覆盖已有文件前创建 SunlessSeaCN-backup-* 备份。\n\n本包包含：BepInEx 5.4.23.5、SunlessSeaChineseTranslation 6.0.0、完整文本 addon。\n"""
 
-MAC_README = """Sunless Sea 中文补丁 6.0.0 - macOS\n\n安装：将本文件夹放在本地磁盘，双击 Install-SunlessSeaCN.command。脚本会寻找 Steam 的 Sunless Sea.app，并同时探测新版和旧版 Unity 数据目录。\n\n首次运行若 macOS 阻止脚本：右键脚本选择“打开”，或在终端执行 chmod u+x *.command *.sh 后再运行。必要时只对游戏目录执行：\n  xattr -dr com.apple.quarantine \"$HOME/Library/Application Support/Steam/steamapps/common/SunlessSea\"\n\n卸载：双击 Uninstall-SunlessSeaCN.command。安装器会在覆盖已有文件前创建备份。\n\n注意：本包使用 BepInEx 5.4.23.5 macOS universal loader；Windows 可在本机完整测试，macOS 运行时仍需在 Mac 上第一次启动验证。\n"""
+MAC_README = """Sunless Sea 中文补丁 6.0.1 - macOS\n\n安装包可以放在下载文件夹、桌面或其他本地目录，不需要把整个安装包文件夹放进游戏目录。解压后双击 Install-SunlessSeaCN.command；脚本会寻找包含 Sunless Sea.app 的 Steam 游戏根目录。\n\n游戏根目录是：\n  ~/Library/Application Support/Steam/steamapps/common/SunlessSea/\n其中应当能看到 Sunless Sea.app。安装器会把 payload/game 的内容复制到这个目录，把 payload/data 的文本 addon 复制到玩家数据目录。不要把文件复制到 Sunless Sea.app/Contents。\n\n如果 Finder 报“无法运行，因为你没有正确的访问权限”，在终端执行（把路径改成解压后的实际路径）：\n  cd \"/path/to/SunlessSeaCN-macOS-v6.0.1\"\n  chmod u+x Install-SunlessSeaCN.command Install-SunlessSeaCN.sh Uninstall-SunlessSeaCN.command Uninstall-SunlessSeaCN.sh\n  xattr -dr com.apple.quarantine .\n  ./Install-SunlessSeaCN.command\n也可以直接绕过执行位运行：\n  bash Install-SunlessSeaCN.sh\n\n安装后，在 Steam 的 Sunless Sea“属性 → 通用 → 启动选项”中设置：\n  ./run_bepinex.sh %command%\n这样 Steam 才会通过 BepInEx 启动游戏。\n\n卸载：双击 Uninstall-SunlessSeaCN.command，或在终端运行 bash Uninstall-SunlessSeaCN.sh。安装器会在覆盖已有文件前创建备份。\n\n注意：本包使用 BepInEx 5.4.23.5 macOS universal loader；Windows 可在本机完整测试，macOS 运行时仍需在 Mac 上第一次启动验证。\n"""
 
 PACKAGE_NOTICE = """第三方来源与许可证说明\n\n本安装包不是 Sunless Sea 游戏本体，也不包含游戏原始资源；使用前请先合法拥有并安装 Sunless Sea。\n\n1. UI 插件：部分内容来自 tinygrox/SunlessSeaCN：\n   https://github.com/tinygrox/SunlessSeaCN\n   上游仓库包含 GPL-3.0 LICENSE；其 README 另有 CC-BY 4.0 说明。这里保留上游版权和许可证，不改变上游条款。\n\n2. 文本 addon：参考并整理自 InstantComet/SunlessSea：\n   https://github.com/InstantComet/SunlessSea\n   该仓库当前未发现独立 LICENSE 文件；其 README 将项目定位为文本汉化并注明项目延续自 diskrubbish 的项目。请保留原作者署名，不将上游文本声称为本人的原创。\n\n3. Mod 加载器：BepInEx 5.4.23.5：\n   https://github.com/BepInEx/BepInEx/releases/tag/v5.4.23.5\n   BepInEx 按其上游 LGPL-2.1 等许可证发布；完整条款和源码请以官方仓库为准。\n\n本仓库原创部分仅包括安装/卸载脚本、打包脚本、兼容性整理、测试记录和说明文档。第三方文件的许可证优先于本仓库原创部分的许可证。\n"""
 
-PLUGIN_README = """Sunless Sea 中文 UI 插件说明（兼容包 6.0.0）
+PLUGIN_README = """Sunless Sea 中文 UI 插件说明（兼容包 6.0.1）
 
 本包的安装器会自动放置 BepInEx、插件和文本 addon，不需要手动覆盖游戏原文件。
 
@@ -331,8 +332,10 @@ def zip_dir(src: Path, target: Path) -> None:
                 arcname = str(p.relative_to(src.parent)).replace("\\", "/")
                 info = zipfile.ZipInfo(arcname)
                 info.compress_type = zipfile.ZIP_DEFLATED
-                # Preserve executable bits for macOS launchers even when the
-                # package is assembled on Windows.
+                # Mark entries as Unix files so macOS Archive Utility preserves
+                # executable bits. Without create_system=3, a Windows-built
+                # ZIP can turn .command/.sh files into non-executable files.
+                info.create_system = 3
                 mode = 0o755 if p.suffix in {".sh", ".command"} else 0o644
                 info.external_attr = (mode & 0xFFFF) << 16
                 zf.writestr(info, p.read_bytes())
