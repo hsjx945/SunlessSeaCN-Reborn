@@ -1,0 +1,17 @@
+第三方来源与许可证说明
+
+本安装包不是 Sunless Sea 游戏本体，也不包含游戏原始资源；使用前请先合法拥有并安装 Sunless Sea。
+
+1. UI 插件：部分内容来自 tinygrox/SunlessSeaCN：
+   https://github.com/tinygrox/SunlessSeaCN
+   上游仓库包含 GPL-3.0 LICENSE；其 README 另有 CC-BY 4.0 说明。这里保留上游版权和许可证，不改变上游条款。
+
+2. 文本 addon：参考并整理自 InstantComet/SunlessSea：
+   https://github.com/InstantComet/SunlessSea
+   该仓库当前未发现独立 LICENSE 文件；其 README 将项目定位为文本汉化并注明项目延续自 diskrubbish 的项目。请保留原作者署名，不将上游文本声称为本人的原创。
+
+3. Mod 加载器：BepInEx 5.4.23.5：
+   https://github.com/BepInEx/BepInEx/releases/tag/v5.4.23.5
+   BepInEx 按其上游 LGPL-2.1 等许可证发布；完整条款和源码请以官方仓库为准。
+
+本仓库原创部分仅包括安装/卸载脚本、打包脚本、兼容性整理、测试记录和说明文档。第三方文件的许可证优先于本仓库原创部分的许可证。

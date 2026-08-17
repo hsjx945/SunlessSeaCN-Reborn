@@ -1,0 +1,25 @@
+MIT License (仅适用于本仓库原创文件)
+
+Copyright (c) 2026 Sunless Sea CN Reborn contributors
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of the original packaging scripts, installer scripts, build scripts, and
+documentation in this repository (the "Original Work"), to deal in the
+Original Work without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Original Work, and to permit persons to whom the Original Work
+is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Original Work.
+
+THE ORIGINAL WORK IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE ORIGINAL WORK OR
+THE USE OR OTHER DEALINGS IN THE ORIGINAL WORK.
+
+This license does not apply to third-party plugins, BepInEx files, translated
+text, game files, or other materials identified in THIRD-PARTY-NOTICES.md.
