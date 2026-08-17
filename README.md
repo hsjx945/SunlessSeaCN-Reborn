@@ -11,9 +11,17 @@
 - `SunlessSeaCN-Windows-v6.0.0.zip`：Windows 一键安装、备份、重复安装和卸载恢复。
 - `SunlessSeaCN-macOS-v6.0.0.zip`：macOS universal 安装/卸载脚本；macOS 实机运行仍需首次验证。
 
+## 汉化实机截图
+
+下面是本项目在 Windows Steam 版上的中文 UI、事件文本和港口界面截图：
+
+![Sunless Sea／无光之海中文汉化实机截图：中文 UI、教程、港口和船员界面](assets/sunless-sea-cn-screenshot.png)
+
 ## 已验证的游戏版本与兼容范围
 
 下面是本项目实际测试所对应的游戏版本，不要把补丁版本 `6.0.0` 误认为游戏版本号：
+
+本版本对应 [Steam 官方公告《Maintenance update》](https://store.steampowered.com/news/app/304650/view/714534317091455363)（2026 年 7 月 29 日）。公告说明该次更新升级了 Sunless Sea 的 Unity 版本，并修复了部分发售后内容无法正确同步到存档的问题；公告记录的 Steam BuildID 是 `24437295`。本项目正是针对这个更新后的版本制作并完成 Windows 实机验证。
 
 | 项目 | 已验证信息 |
 | --- | --- |
@@ -112,7 +120,13 @@ Windows 已在上述 Steam 版本上完成实机启动和插件加载验证。ma
 
 ## 参考与致谢
 
-本项目是兼容性整理和分发工程，不声称拥有第三方内容的版权。
+### 致谢前人汉化
+
+特别感谢前人的汉化工作：本项目**不是从零开始翻译，也不把第三方汉化文本或 UI 翻译称为原创**。本项目作者主要负责当前版本的兼容性核对、格式/标签修复、BepInEx 运行环境整理、Windows/macOS 安装器、打包和测试，并将已有成果整合成可安装的 `Sunless Sea CN Reborn` 兼容包。
+
+感谢 [tinygrox/SunlessSeaCN](https://github.com/tinygrox/SunlessSeaCN) 提供 UI 中文插件方向和运行时兼容基础，感谢 [InstantComet/SunlessSea](https://github.com/InstantComet/SunlessSea) 及其 README 所列的 [diskrubbish 前身项目](https://github.com/diskrubbish/Sunless_Sea_Chinese_Translation_Mod_Re) 提供文本汉化基础。请以这些上游项目的作者署名、许可证和最新说明为准。
+
+本仓库原创部分主要是兼容性整理、安装/卸载脚本、打包脚本、测试记录和说明文档。
 
 - UI 插件参考：[tinygrox/SunlessSeaCN](https://github.com/tinygrox/SunlessSeaCN)。该项目 README 说明其为 UI 中文补丁，并注明部分翻译参考 Instant Comet；仓库包含 GPL-3.0 LICENSE，同时 README 写有 CC-BY 4.0 说明，因此请以其仓库中的最新许可证和作者说明为准。
 - 文本 addon 参考：[InstantComet/SunlessSea](https://github.com/InstantComet/SunlessSea)，其 README 说明这是文本汉化项目，并列出 [diskrubbish 的前身项目](https://github.com/diskrubbish/Sunless_Sea_Chinese_Translation_Mod_Re)。该仓库当前未发现独立 LICENSE 文件，原作者署名应保留。
