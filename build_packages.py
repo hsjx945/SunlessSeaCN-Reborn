@@ -12,7 +12,7 @@ BUILD = ROOT / ".build"
 WIN_GAME = Path(r"E:\Program Files (x86)\Steam\steamapps\common\SunlessSea")
 WIN_DATA = Path(r"C:\Users\Lenovo\AppData\LocalLow\Failbetter Games\Sunless Sea")
 MAC_BASE = BUILD / "mac"
-VERSION = "6.0.1"
+VERSION = "6.0.2"
 
 
 WIN_PS1 = r'''param(
@@ -103,7 +103,7 @@ foreach ($source in Get-ChildItem -LiteralPath (Join-Path $PayloadRoot "data") -
 
 $manifest = [pscustomobject]@{
     Package = "SunlessSeaCN"
-    Version = "6.0.0"
+    Version = "6.0.2"
     InstalledAt = (Get-Date).ToString("o")
     GameRoot = $GameRoot
     DataRoot = $DataRoot
@@ -244,6 +244,16 @@ echo "游戏目录: $GAME_ROOT"
 echo "数据目录: $DATA_ROOT"
 echo "Steam 启动选项: ./run_bepinex.sh %command%"
 echo "如 Steam 阻止脚本运行，请在终端执行: xattr -dr com.apple.quarantine \"$GAME_ROOT\""
+if [[ "${SUNLESS_SEA_CN_LAUNCH_AFTER_INSTALL:-0}" == "1" ]]; then
+  echo "正在通过 BepInEx 直接启动 Sunless Sea..."
+  export SteamAppId=304650
+  export SteamGameId=304650
+  if ! pgrep -x "Steam" >/dev/null 2>&1; then
+    open -a "Steam" >/dev/null 2>&1 || true
+    sleep 3
+  fi
+  exec "$GAME_ROOT/run_bepinex.sh"
+fi
 '''
 
 MAC_UNINSTALL_SH = r'''#!/bin/bash
@@ -282,23 +292,35 @@ SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 exec "$SCRIPT_DIR/Install-SunlessSeaCN.sh"
 '''
 
+MAC_START_SH = r'''#!/bin/bash
+set -euo pipefail
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+export SUNLESS_SEA_CN_LAUNCH_AFTER_INSTALL=1
+exec "$SCRIPT_DIR/Install-SunlessSeaCN.sh"
+'''
+
+MAC_START_CMD = r'''#!/bin/bash
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+exec "$SCRIPT_DIR/Install-And-Start-SunlessSeaCN.sh"
+'''
+
 MAC_UNINSTALL_CMD = r'''#!/bin/bash
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 exec "$SCRIPT_DIR/Uninstall-SunlessSeaCN.sh"
 '''
 
-WIN_README = """Sunless Sea 中文补丁 6.0.1 - Windows\n\n安装：双击 Install-SunlessSeaCN.cmd。Steam 安装目录找不到时，可在 PowerShell 中设置：\n  $env:SUNLESS_SEA_GAME_ROOT='D:\\SteamLibrary\\steamapps\\common\\SunlessSea'\n  .\\Install-SunlessSeaCN.ps1\n\n卸载：双击 Uninstall-SunlessSeaCN.cmd。安装器会在覆盖已有文件前创建 SunlessSeaCN-backup-* 备份。\n\n本包包含：BepInEx 5.4.23.5、SunlessSeaChineseTranslation 6.0.0、完整文本 addon。\n"""
+WIN_README = """Sunless Sea 中文补丁 6.0.2 - Windows\n\n安装：双击 Install-SunlessSeaCN.cmd。Steam 安装目录找不到时，可在 PowerShell 中设置：\n  $env:SUNLESS_SEA_GAME_ROOT='D:\\SteamLibrary\\steamapps\\common\\SunlessSea'\n  .\\Install-SunlessSeaCN.ps1\n\n卸载：双击 Uninstall-SunlessSeaCN.cmd。安装器会在覆盖已有文件前创建 SunlessSeaCN-backup-* 备份。\n\n本包包含：BepInEx 5.4.23.5、SunlessSeaChineseTranslation 6.0.0、完整文本 addon。\n"""
 
-MAC_README = """Sunless Sea 中文补丁 6.0.1 - macOS\n\n安装包可以放在下载文件夹、桌面或其他本地目录，不需要把整个安装包文件夹放进游戏目录。解压后双击 Install-SunlessSeaCN.command；脚本会寻找包含 Sunless Sea.app 的 Steam 游戏根目录。\n\n游戏根目录是：\n  ~/Library/Application Support/Steam/steamapps/common/SunlessSea/\n其中应当能看到 Sunless Sea.app。安装器会把 payload/game 的内容复制到这个目录，把 payload/data 的文本 addon 复制到玩家数据目录。不要把文件复制到 Sunless Sea.app/Contents。\n\n如果 Finder 报“无法运行，因为你没有正确的访问权限”，在终端执行（把路径改成解压后的实际路径）：\n  cd \"/path/to/SunlessSeaCN-macOS-v6.0.1\"\n  chmod u+x Install-SunlessSeaCN.command Install-SunlessSeaCN.sh Uninstall-SunlessSeaCN.command Uninstall-SunlessSeaCN.sh\n  xattr -dr com.apple.quarantine .\n  ./Install-SunlessSeaCN.command\n也可以直接绕过执行位运行：\n  bash Install-SunlessSeaCN.sh\n\n安装后，在 Steam 的 Sunless Sea“属性 → 通用 → 启动选项”中设置：\n  ./run_bepinex.sh %command%\n这样 Steam 才会通过 BepInEx 启动游戏。\n\n卸载：双击 Uninstall-SunlessSeaCN.command，或在终端运行 bash Uninstall-SunlessSeaCN.sh。安装器会在覆盖已有文件前创建备份。\n\n注意：本包使用 BepInEx 5.4.23.5 macOS universal loader；Windows 可在本机完整测试，macOS 运行时仍需在 Mac 上第一次启动验证。\n"""
+MAC_README = """Sunless Sea 中文补丁 6.0.2 - macOS\n\n最简单的用法：解压后直接双击 Install-And-Start-SunlessSeaCN.command。它会自动寻找 Steam 游戏目录、安装汉化，然后通过 BepInEx 直接启动游戏；不需要手动复制文件，也不需要设置 Steam 启动选项。Steam 客户端未运行时，脚本会尝试自动打开 Steam。\n\n安装包可以放在下载文件夹、桌面或其他本地目录，不需要把整个安装包文件夹放进游戏目录。高级用法仍可双击 Install-SunlessSeaCN.command，仅安装而不启动游戏。\n\n游戏根目录是：\n  ~/Library/Application Support/Steam/steamapps/common/SunlessSea/\n其中应当能看到 Sunless Sea.app。安装器会把 payload/game 的内容复制到这个目录，把 payload/data 的文本 addon 复制到玩家数据目录。不要把文件复制到 Sunless Sea.app/Contents。\n\n如果 Finder 报“无法运行，因为你没有正确的访问权限”，在终端执行（把路径改成解压后的实际路径）：\n  cd \"/path/to/SunlessSeaCN-macOS-v6.0.2\"\n  chmod u+x Install-And-Start-SunlessSeaCN.command Install-And-Start-SunlessSeaCN.sh Install-SunlessSeaCN.command Install-SunlessSeaCN.sh Uninstall-SunlessSeaCN.command Uninstall-SunlessSeaCN.sh\n  xattr -dr com.apple.quarantine .\n  ./Install-And-Start-SunlessSeaCN.command\n也可以直接绕过执行位运行：\n  bash Install-And-Start-SunlessSeaCN.sh\n\n如果你选择“仅安装”模式，Steam 启动选项仍可作为备用方式：`./run_bepinex.sh %command%`。一键启动模式不需要这个设置。\n\n卸载：双击 Uninstall-SunlessSeaCN.command，或在终端运行 bash Uninstall-SunlessSeaCN.sh。安装器会在覆盖已有文件前创建备份。\n\n注意：本包使用 BepInEx 5.4.23.5 macOS universal loader；Windows 可在本机完整测试，macOS 运行时仍需在 Mac 上第一次启动验证。\n"""
 
 PACKAGE_NOTICE = """第三方来源与许可证说明\n\n本安装包不是 Sunless Sea 游戏本体，也不包含游戏原始资源；使用前请先合法拥有并安装 Sunless Sea。\n\n1. UI 插件：部分内容来自 tinygrox/SunlessSeaCN：\n   https://github.com/tinygrox/SunlessSeaCN\n   上游仓库包含 GPL-3.0 LICENSE；其 README 另有 CC-BY 4.0 说明。这里保留上游版权和许可证，不改变上游条款。\n\n2. 文本 addon：参考并整理自 InstantComet/SunlessSea：\n   https://github.com/InstantComet/SunlessSea\n   该仓库当前未发现独立 LICENSE 文件；其 README 将项目定位为文本汉化并注明项目延续自 diskrubbish 的项目。请保留原作者署名，不将上游文本声称为本人的原创。\n\n3. Mod 加载器：BepInEx 5.4.23.5：\n   https://github.com/BepInEx/BepInEx/releases/tag/v5.4.23.5\n   BepInEx 按其上游 LGPL-2.1 等许可证发布；完整条款和源码请以官方仓库为准。\n\n本仓库原创部分仅包括安装/卸载脚本、打包脚本、兼容性整理、测试记录和说明文档。第三方文件的许可证优先于本仓库原创部分的许可证。\n"""
 
-PLUGIN_README = """Sunless Sea 中文 UI 插件说明（兼容包 6.0.1）
+PLUGIN_README = """Sunless Sea 中文 UI 插件说明（兼容包 6.0.2）
 
 本包的安装器会自动放置 BepInEx、插件和文本 addon，不需要手动覆盖游戏原文件。
 
 Windows：双击包根目录的 Install-SunlessSeaCN.cmd。
-macOS：双击包根目录的 Install-SunlessSeaCN.command。
+macOS：双击包根目录的 Install-And-Start-SunlessSeaCN.command；它会安装后直接启动游戏。
 
 不要照搬旧版教程把 BepInEx.cfg 的 `Type = Application` 改成 `Type = Camera`；当前已验证的 Sunless Sea 安装使用 `Application` 即可正常加载插件。
 
@@ -390,11 +412,11 @@ def build_macos() -> Path:
         old_note.unlink()
     write_text(plugin_dir / "README-插件说明.txt", PLUGIN_README)
     copy_tree(WIN_DATA / "addon" / "Sunless_sea_CN_reborn", payload_data / "addon" / "Sunless_sea_CN_reborn")
-    for name, text in (("Install-SunlessSeaCN.sh", MAC_INSTALL_SH), ("Uninstall-SunlessSeaCN.sh", MAC_UNINSTALL_SH), ("Install-SunlessSeaCN.command", MAC_INSTALL_CMD), ("Uninstall-SunlessSeaCN.command", MAC_UNINSTALL_CMD), ("README-安装说明.txt", MAC_README)):
+    for name, text in (("Install-SunlessSeaCN.sh", MAC_INSTALL_SH), ("Install-And-Start-SunlessSeaCN.sh", MAC_START_SH), ("Uninstall-SunlessSeaCN.sh", MAC_UNINSTALL_SH), ("Install-SunlessSeaCN.command", MAC_INSTALL_CMD), ("Install-And-Start-SunlessSeaCN.command", MAC_START_CMD), ("Uninstall-SunlessSeaCN.command", MAC_UNINSTALL_CMD), ("README-安装说明.txt", MAC_README)):
         write_text(out / name, text)
     write_text(out / "THIRD-PARTY-NOTICES.txt", PACKAGE_NOTICE)
     copy_file(ROOT / "LICENSE-ORIGINAL.txt", out / "LICENSE-ORIGINAL.txt")
-    for p in (out / "Install-SunlessSeaCN.sh", out / "Uninstall-SunlessSeaCN.sh", out / "Install-SunlessSeaCN.command", out / "Uninstall-SunlessSeaCN.command", run_script):
+    for p in (out / "Install-SunlessSeaCN.sh", out / "Install-And-Start-SunlessSeaCN.sh", out / "Uninstall-SunlessSeaCN.sh", out / "Install-SunlessSeaCN.command", out / "Install-And-Start-SunlessSeaCN.command", out / "Uninstall-SunlessSeaCN.command", run_script):
         p.chmod(p.stat().st_mode | stat.S_IXUSR | stat.S_IXGRP | stat.S_IXOTH)
     zip_dir(out, DIST / f"SunlessSeaCN-macOS-v{VERSION}.zip")
     return out
