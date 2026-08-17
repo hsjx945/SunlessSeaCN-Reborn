@@ -1,50 +1,114 @@
-# Sunless Sea 中文补丁 / Sunless Sea CN Reborn Pack
+# 《无光之海》Sunless Sea 中文补丁 / Sunless Sea CN Reborn
 
-这是一个面向《Sunless Sea》的社区中文兼容打包项目，当前版本为 **6.0.0**。
+**Sunless Sea 中文汉化、Chinese localization、BepInEx 文本与 UI 补丁**。本仓库为《Sunless Sea》（中文常译：**无光之海**）制作可安装的社区中文兼容包，包含完整文本 addon、中文 UI 插件，以及 Windows/macOS 一键安装与卸载脚本。
 
-它把已经验证可用的 BepInEx UI 插件、文本 addon、Windows 安装器和 macOS 安装器整理成可分发包。项目不包含《Sunless Sea》游戏本体或游戏原始资源，使用前请先合法拥有并安装游戏。
+当前兼容包版本：**6.0.0**。项目不包含《Sunless Sea》游戏本体或游戏原始资源，使用前请先通过 Steam 等合法渠道拥有并安装游戏。
 
-## 下载
+## 快速下载
 
-请从 GitHub Releases 下载：
+从 [GitHub Releases](https://github.com/hsjx945/SunlessSeaCN-Reborn/releases/latest) 下载对应平台的压缩包：
 
-- `SunlessSeaCN-Windows-v6.0.0.zip`：Windows 双击安装/卸载
-- `SunlessSeaCN-macOS-v6.0.0.zip`：macOS 双击安装/卸载
+- `SunlessSeaCN-Windows-v6.0.0.zip`：Windows 一键安装、备份、重复安装和卸载恢复。
+- `SunlessSeaCN-macOS-v6.0.0.zip`：macOS universal 安装/卸载脚本；macOS 实机运行仍需首次验证。
 
-Windows 安装器会自动备份被覆盖的文件，并支持重复安装和卸载恢复。macOS 包使用 BepInEx 5.4.23.5 macOS universal loader；macOS 运行时需要在 Mac 上首次启动验证。
+## 已验证的游戏版本与兼容范围
+
+下面是本项目实际测试所对应的游戏版本，不要把补丁版本 `6.0.0` 误认为游戏版本号：
+
+| 项目 | 已验证信息 |
+| --- | --- |
+| 游戏 | Steam《Sunless Sea》 |
+| Steam AppID | `304650` |
+| Steam BuildID | `24437295` |
+| 可执行文件/Unity | `6000.3.2.11106207` / `6000.3.2f1` |
+| Unity 提交标识 | `a9779f353c9b` |
+| 操作系统实机测试 | Windows 64-bit |
+| Mod 加载器 | BepInEx `5.4.23.5` |
+| 中文插件 | `SunlessSeaChineseTranslation 6.0.0` |
+| 文本内容 | `Sunless_sea_CN_reborn`，17 个 JSON addon 文件 |
+| DLC | Zubmariner（潜艇 DLC）文本随完整 addon 打包；DLC 本身需另购并安装 |
+
+Windows 实机日志已确认 BepInEx 和中文插件正常加载，并应用 Sunless Sea 的 Harmony 补丁。若 Steam 将游戏更新到新的 BuildID 或 Unity 主版本，**不能保证 6.0.0 仍然可用**；遇到插件不加载、启动崩溃或文本失效时，应等待本仓库发布兼容更新。
+
+macOS 安装包使用 BepInEx 5.4.23.5 macOS universal loader，已通过脚本语法、权限和包结构检查；由于当前没有 Mac 实机，本仓库暂不宣称 macOS 运行时已经验证。
+
+## 包含内容
+
+- BepInEx `5.4.23.5`。
+- `SunlessSeaChineseTranslation` UI/运行时插件 `6.0.0`。
+- `Sunless_sea_CN_reborn` 完整文本 addon，共 17 个 JSON 文件。
+- Windows 与 macOS 安装、卸载、备份和重复安装处理。
+- 已修复的高优先级文本问题：`Don't panic`、两处 `<i>...</i>` 富文本标签。
+- 不包含游戏本体、Unity 原始资源或 Steam 文件；安装前必须先安装正版游戏。
 
 ## 安装
 
 ### Windows
 
-1. 解压 Windows 压缩包。
+1. 解压 `SunlessSeaCN-Windows-v6.0.0.zip`。
 2. 双击 `Install-SunlessSeaCN.cmd`。
-3. 启动游戏。
+3. 启动 Steam 中的 Sunless Sea。
 
-找不到 Steam 游戏目录时，可设置 `SUNLESS_SEA_GAME_ROOT`，或直接运行 `Install-SunlessSeaCN.ps1 -GameRoot <游戏目录>`。
+安装器会自动探测常见 Steam 目录，并在覆盖已有文件前创建备份。找不到游戏目录时，可设置 `SUNLESS_SEA_GAME_ROOT`，或直接运行：
+
+```powershell
+.\Install-SunlessSeaCN.ps1 -GameRoot "D:\SteamLibrary\steamapps\common\SunlessSea"
+```
+
+卸载时双击 `Uninstall-SunlessSeaCN.cmd`，安装器会尝试恢复备份。
 
 ### macOS
 
-1. 解压 macOS 压缩包。
+1. 解压 `SunlessSeaCN-macOS-v6.0.0.zip`。
 2. 双击 `Install-SunlessSeaCN.command`。
 3. 启动 Steam 中的 Sunless Sea。
 
-脚本会探测 Steam 游戏目录和常见的 Unity 数据目录。若 macOS 阻止脚本，右键选择“打开”，或在终端执行 `chmod u+x *.command *.sh`。
+脚本会探测 Steam 的 `Sunless Sea.app` 和常见 Unity 数据目录。若 macOS 阻止脚本，右键选择“打开”，或在终端执行：
 
-## 当前内容
+```bash
+chmod u+x *.command *.sh
+```
 
-- BepInEx 5.4.23.5
-- `SunlessSeaChineseTranslation` UI/运行时插件 6.0.0
-- `Sunless_sea_CN_reborn` 文本 addon，共 17 个 JSON 文件
-- Windows/macOS 安装、卸载、备份和重复安装处理
-- 已修复的高优先级文本问题：`Don't panic`、两处 `<i>...</i>` 富文本标签
+卸载时双击 `Uninstall-SunlessSeaCN.command`。必要时可只对游戏目录移除隔离属性：
+
+```bash
+xattr -dr com.apple.quarantine "$HOME/Library/Application Support/Steam/steamapps/common/SunlessSea"
+```
+
+## 常见问题
+
+### Sunless Sea 有中文吗？
+
+本仓库提供《Sunless Sea／无光之海》的社区中文补丁，覆盖 UI 和主要游戏文本；从 Releases 下载对应平台安装包即可。
+
+### Sunless Sea 汉化支持哪个版本？
+
+当前明确验证的是 Steam AppID `304650`、BuildID `24437295`、Unity `6000.3.2f1`（Unity 内部版本 `6000.3.2.11106207`）。其他 BuildID 可能可以运行，但不属于本版的实机验证范围。
+
+### 支持 Zubmariner 潜艇 DLC 吗？
+
+支持。完整文本 addon 按包含 Zubmariner 内容的游戏数据整理，潜艇 DLC 的文本在汉化范围内；DLC 本身仍需玩家在 Steam 购买并安装。
+
+### Windows 和 macOS 都能用吗？
+
+Windows 已在上述 Steam 版本上完成实机启动和插件加载验证。macOS 提供 universal 安装包和卸载脚本，但当前仍需要 Mac 实机首次启动验证。
+
+### 这是《Sunless Sea》游戏本体吗？
+
+不是。这是汉化/本地化兼容包，只分发补丁、Mod 加载器、文本 addon 和安装脚本，不分发游戏本体或原始资源。
+
+## 搜索关键词 / Search keywords
+
+为了方便中文玩家和英文玩家找到本项目，以下名称均指向同一个游戏或本仓库：
+
+`Sunless Sea 中文补丁` · `Sunless Sea 汉化` · `无光之海 汉化` · `无光之海 中文` · `Sunless Sea Chinese` · `Sunless Sea Chinese translation` · `Sunless Sea localization` · `Sunless Sea CN` · `SunlessSeaCN` · `BepInEx Sunless Sea` · `Zubmariner 中文` · `Sunless Sea Windows patch` · `Sunless Sea macOS patch` · `Steam Sunless Sea mod`
 
 ## 测试记录
 
 - Windows 临时目录：安装、重复安装、备份、卸载恢复通过。
-- 真实 Windows Steam 安装：游戏启动后日志确认插件加载并应用 Harmony。
-- macOS：安装器和 BepInEx shell 脚本通过语法检查；压缩包保留 macOS 脚本可执行权限，包含 17 个 addon JSON，未混入 Windows `winhttp.dll`。
-- macOS 游戏运行时无法在 Windows 上模拟，需 Mac 实机首次启动确认。
+- Windows Steam 实机：游戏启动后日志确认 BepInEx `5.4.23.5`、中文插件 `6.0.0` 加载并应用 Harmony。
+- macOS：安装器和 BepInEx shell 脚本通过语法检查；压缩包保留脚本可执行权限，包含 17 个 addon JSON，未混入 Windows `winhttp.dll`。
+- macOS 游戏运行时：无法在 Windows 上模拟，需 Mac 实机首次启动确认。
 
 ## 参考与致谢
 
