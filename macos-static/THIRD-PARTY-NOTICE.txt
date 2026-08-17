@@ -1,0 +1,10 @@
+macOS static UI PoC attribution
+
+The files under src/ are adapted from tinygrox/SunlessSeaCN at commit
+e9bde736554913aa835f547f28e26ed6f393d515. The upstream repository declares
+GPL-3.0; retain the upstream LICENSE and provide corresponding source when
+redistributing this adapted plugin.
+
+0Harmony.dll is the net472 runtime from the Lib.Harmony 2.4.2 NuGet package.
+It is distributed under the MIT license in LICENSE-HARMONY-MIT.txt; the locked
+package URL and hashes are recorded in packaging/macos/sources.lock.json.

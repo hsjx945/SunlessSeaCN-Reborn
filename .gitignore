@@ -1,6 +1,9 @@
 .build/
+/build/
 .test-sandbox/
 __pycache__/
 *.pyc
+**/bin/
+**/obj/
 dist/*.zip
 dist/SunlessSeaCN-*-v*/

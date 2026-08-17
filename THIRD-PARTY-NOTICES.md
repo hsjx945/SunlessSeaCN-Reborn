@@ -25,6 +25,13 @@
 - 用途：Unity Mono Mod 加载器。
 - BepInEx 按上游 LGPL-2.1 等许可证发布；源码、完整许可证和第三方依赖请以官方仓库为准。
 
+## macOS v6.0.5 静态 UI 路线
+
+- macOS v6.0.5 不再依赖 BepInEx/Doorstop 启动 UI 插件；它分发针对 Steam BuildID `24437295` 的 `Sunless.Game.bsdiff`、独立中文程序集、资源和文本 addon。
+- 静态 UI 插件复用 [tinygrox/SunlessSeaCN](https://github.com/tinygrox/SunlessSeaCN) GPL-3.0 源码快照（commit `e9bde736554913aa835f547f28e26ed6f393d515`），并新增 macOS Bootstrap 与 Mono.Cecil 注入器。对应源码随仓库 `macos-static/` 保留，修改源应按 GPL-3.0 提供对应源码和许可证。
+- Harmony 使用 [Lib.Harmony 2.4.2](https://www.nuget.org/packages/Lib.Harmony/2.4.2)，MIT 许可证。NuGet nupkg SHA-256 为 `d64592e53090464559fce48612c9ca7c8dc73113841376b7aa3455f46fc5d579`，精确来源和选用程序集哈希见 `packaging/macos/sources.lock.json`。
+- macOS 包只分发 bsdiff，不分发《Sunless Sea》的完整原始或 patched `Sunless.Game.dll`；安装器在本机临时生成并校验目标程序集。
+
 ## 游戏本体
 
 《Sunless Sea》及其原始资源版权归 Failbetter Games 及其他相关权利人所有。本项目不包含游戏本体，不代表 Failbetter Games，也不提供盗版游戏文件。

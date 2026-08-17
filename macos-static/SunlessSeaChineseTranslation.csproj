@@ -1,0 +1,66 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <AssemblyName>SunlessSeaChineseTranslation</AssemblyName>
+    <RootNamespace>SSTranslator</RootNamespace>
+    <OutputType>Library</OutputType>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <LangVersion>latest</LangVersion>
+    <Nullable>disable</Nullable>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
+    <GenerateDependencyFile>false</GenerateDependencyFile>
+    <ProduceReferenceAssembly>false</ProduceReferenceAssembly>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
+    <GameManaged Condition="'$(GameManaged)' == ''">$(MSBuildThisFileDirectory)../../../../../Library/Application Support/Steam/steamapps/common/SunlessSea/Sunless Sea.app/Contents/Resources/Data/Managed</GameManaged>
+    <VendorRoot Condition="'$(VendorRoot)' == ''">$(MSBuildThisFileDirectory)../vendor-cache/bepinex-5.4.23.5</VendorRoot>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="src/**/*.cs" Exclude="src/PluginMain.cs;src/SSTranslator.csproj;src/**/obj/**;src/**/bin/**" />
+    <Compile Include="Bootstrap.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Lib.Harmony" Version="2.4.2" GeneratePathProperty="true" />
+    <Reference Include="Failbetter.Core">
+      <HintPath>$(GameManaged)/Failbetter.Core.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="JsonFX">
+      <HintPath>$(GameManaged)/JsonFX.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="Sunless.Game">
+      <HintPath>$(GameManaged)/Sunless.Game.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine">
+      <HintPath>$(GameManaged)/UnityEngine.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>$(GameManaged)/UnityEngine.CoreModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.Physics2DModule">
+      <HintPath>$(GameManaged)/UnityEngine.Physics2DModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.ImageConversionModule">
+      <HintPath>$(GameManaged)/UnityEngine.ImageConversionModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>$(GameManaged)/UnityEngine.UI.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+  </ItemGroup>
+
+  <Target Name="CopyHarmonyRuntime" AfterTargets="Build">
+    <Copy SourceFiles="$(PkgLib_Harmony)/lib/net472/0Harmony.dll" DestinationFolder="$(OutputPath)" SkipUnchangedFiles="true" />
+  </Target>
+
+</Project>

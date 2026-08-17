@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import shutil
 import stat
+import sys
 import zipfile
 from pathlib import Path
 
@@ -11,8 +12,9 @@ DIST = ROOT / "dist"
 BUILD = ROOT / ".build"
 WIN_GAME = Path(r"E:\Program Files (x86)\Steam\steamapps\common\SunlessSea")
 WIN_DATA = Path(r"C:\Users\Lenovo\AppData\LocalLow\Failbetter Games\Sunless Sea")
-MAC_BASE = BUILD / "mac"
-VERSION = "6.0.4"
+MAC_STATIC_BUILD = ROOT / "build" / "macos-static"
+WIN_VERSION = "6.0.4"
+MAC_VERSION = "6.0.5"
 
 
 WIN_PS1 = r'''param(
@@ -334,7 +336,8 @@ def write_text(path: Path, text: str) -> None:
     # character of commands when launched through cmd.exe.
     newline = "\r\n" if path.suffix.lower() in {".cmd", ".bat"} else "\n"
     normalized = text.replace("\r\n", "\n").replace("\r", "\n")
-    path.write_text(normalized.replace("\n", newline), encoding="utf-8", newline="")
+    with path.open("w", encoding="utf-8", newline="") as handle:
+        handle.write(normalized.replace("\n", newline))
 
 
 def copy_file(src: Path, dst: Path) -> None:
@@ -368,7 +371,7 @@ def zip_dir(src: Path, target: Path) -> None:
 
 
 def build_windows() -> Path:
-    out = DIST / f"SunlessSeaCN-Windows-v{VERSION}"
+    out = DIST / f"SunlessSeaCN-Windows-v{WIN_VERSION}"
     if out.exists():
         shutil.rmtree(out)
     payload_game = out / "payload" / "game"
@@ -390,48 +393,68 @@ def build_windows() -> Path:
     write_text(out / "README-安装说明.txt", WIN_README)
     write_text(out / "THIRD-PARTY-NOTICES.txt", PACKAGE_NOTICE)
     copy_file(ROOT / "LICENSE-ORIGINAL.txt", out / "LICENSE-ORIGINAL.txt")
-    zip_dir(out, DIST / f"SunlessSeaCN-Windows-v{VERSION}.zip")
+    zip_dir(out, DIST / f"SunlessSeaCN-Windows-v{WIN_VERSION}.zip")
     return out
 
 
 def build_macos() -> Path:
-    out = DIST / f"SunlessSeaCN-macOS-v{VERSION}"
+    out = DIST / f"SunlessSeaCN-macOS-v{MAC_VERSION}"
     if out.exists():
         shutil.rmtree(out)
     payload_game = out / "payload" / "game"
     payload_data = out / "payload" / "data"
-    if not MAC_BASE.exists():
-        raise SystemExit(f"Missing downloaded BepInEx macOS payload: {MAC_BASE}")
-    copy_tree(MAC_BASE, payload_game)
-    # The official script accepts the app name as its first argument, but a
-    # fixed value makes the double-click installer predictable.
-    run_script = payload_game / "run_bepinex.sh"
-    text = run_script.read_text(encoding="utf-8")
-    text = text.replace('executable_name=""', 'executable_name="Sunless Sea.app"', 1)
-    write_text(run_script, text)
-    copy_file(WIN_GAME / "BepInEx" / "config" / "BepInEx.cfg", payload_game / "BepInEx" / "config" / "BepInEx.cfg")
-    copy_tree(WIN_GAME / "BepInEx" / "plugins" / "SunlessSeaChineseTranslation", payload_game / "BepInEx" / "plugins" / "SunlessSeaChineseTranslation")
-    plugin_dir = payload_game / "BepInEx" / "plugins" / "SunlessSeaChineseTranslation"
-    for old_note in plugin_dir.glob("*.txt"):
-        old_note.unlink()
-    write_text(plugin_dir / "README-插件说明.txt", PLUGIN_README)
-    copy_tree(WIN_DATA / "addon" / "Sunless_sea_CN_reborn", payload_data / "addon" / "Sunless_sea_CN_reborn")
-    for name, text in (("Install-SunlessSeaCN.sh", MAC_INSTALL_SH), ("Install-And-Start-SunlessSeaCN.sh", MAC_START_SH), ("Uninstall-SunlessSeaCN.sh", MAC_UNINSTALL_SH), ("Install-SunlessSeaCN.command", MAC_INSTALL_CMD), ("Install-And-Start-SunlessSeaCN.command", MAC_START_CMD), ("Uninstall-SunlessSeaCN.command", MAC_UNINSTALL_CMD), ("README-安装说明.txt", MAC_README)):
-        write_text(out / name, text)
-    write_text(out / "THIRD-PARTY-NOTICES.txt", PACKAGE_NOTICE)
+    managed = MAC_STATIC_BUILD / "staging" / "Managed"
+    addon = MAC_STATIC_BUILD / "player-data" / "addon" / "Sunless_sea_CN_reborn"
+    delta = MAC_STATIC_BUILD / "delta" / "Sunless.Game.bsdiff"
+    required = (
+        delta,
+        managed / "SunlessSeaChineseTranslation.dll",
+        managed / "0Harmony.dll",
+        managed / "SunlessSeaCN" / "Data" / "qualities.json",
+        addon,
+    )
+    for path in required:
+        if not path.exists():
+            raise SystemExit(f"Missing macOS static build artifact: {path}")
+    copy_file(delta, payload_game / "Sunless.Game.bsdiff")
+    # Only the standalone patch, Harmony, and localization resources are
+    # distributed. The original and patched full game DLLs stay out of ZIP.
+    for name in ("SunlessSeaChineseTranslation.dll", "0Harmony.dll"):
+        copy_file(managed / name, payload_game / "Managed" / name)
+    copy_tree(managed / "SunlessSeaCN", payload_game / "Managed" / "SunlessSeaCN")
+    copy_tree(addon, payload_data / "addon" / "Sunless_sea_CN_reborn")
+    source_macos = ROOT / "packaging" / "macos"
+    for name in (
+        "Install-SunlessSeaCN.sh",
+        "Install-And-Start-SunlessSeaCN.sh",
+        "Uninstall-SunlessSeaCN.sh",
+        "Install-SunlessSeaCN.command",
+        "Install-And-Start-SunlessSeaCN.command",
+        "Uninstall-SunlessSeaCN.command",
+    ):
+        copy_file(source_macos / name, out / name)
+    mac_readme = """Sunless Sea 中文补丁 6.0.5 - macOS\n\n本版针对 Steam AppID 304650、BuildID 24437295、Unity 6000.3.2f1 的 macOS universal Mono 版本。请先关闭游戏和 Steam 的 Sunless Sea 进程。\n\n安装：双击 Install-And-Start-SunlessSeaCN.command；只安装则双击 Install-SunlessSeaCN.command。安装器将对 Sunless.Game.dll 做版本校验后使用 bsdiff 临时生成目标文件，复制 UI 插件和文本 addon，并对 app 进行 ad-hoc codesign 严格校验。\n\nUnity 6 的玩家数据目录固定优先为：\n  ~/Library/Application Support/com.failbettergames.sunlesssea\n旧版 unity.Failbetter Games.Sunless Sea 目录不会因为存在旧存档而被自动选用。\n\n卸载：双击 Uninstall-SunlessSeaCN.command。安装器会校验补丁文件哈希，只移除仍未被用户修改的文件，并恢复备份；备份目录不会自动删除。\n\n本包不含游戏本体、完整原始 DLL 或完整 patched DLL；Steam 更新后若 Sunless.Game.dll hash 不匹配，安装器会拒绝修改。\n"""
+    write_text(out / "README-安装说明.txt", mac_readme)
+    write_text(out / "THIRD-PARTY-NOTICES.txt", PACKAGE_NOTICE + "\n\n4. 静态 UI 路线：本 macOS 包复用 tinygrox/SunlessSeaCN GPL-3.0 源码快照，新增 Bootstrap 与 Mono.Cecil 注入器；对应源码和归属见仓库 macos-static/。\n\n5. Harmony：Lib.Harmony 2.4.2，MIT；NuGet nupkg SHA-256 见 SOURCES-LOCK.json。\n")
+    copy_file(ROOT / "packaging" / "macos" / "sources.lock.json", out / "SOURCES-LOCK.json")
+    copy_file(ROOT / "macos-static" / "LICENSE-GPL-3.0.txt", out / "LICENSE-GPL-3.0.txt")
+    copy_file(ROOT / "macos-static" / "LICENSE-HARMONY-MIT.txt", out / "LICENSE-HARMONY-MIT.txt")
     copy_file(ROOT / "LICENSE-ORIGINAL.txt", out / "LICENSE-ORIGINAL.txt")
-    for p in (out / "Install-SunlessSeaCN.sh", out / "Install-And-Start-SunlessSeaCN.sh", out / "Uninstall-SunlessSeaCN.sh", out / "Install-SunlessSeaCN.command", out / "Install-And-Start-SunlessSeaCN.command", out / "Uninstall-SunlessSeaCN.command", run_script):
+    for p in (out / "Install-SunlessSeaCN.sh", out / "Install-And-Start-SunlessSeaCN.sh", out / "Uninstall-SunlessSeaCN.sh", out / "Install-SunlessSeaCN.command", out / "Install-And-Start-SunlessSeaCN.command", out / "Uninstall-SunlessSeaCN.command"):
         p.chmod(p.stat().st_mode | stat.S_IXUSR | stat.S_IXGRP | stat.S_IXOTH)
-    zip_dir(out, DIST / f"SunlessSeaCN-macOS-v{VERSION}.zip")
+    zip_dir(out, DIST / f"SunlessSeaCN-macOS-v{MAC_VERSION}.zip")
     return out
 
 
 def main() -> None:
     DIST.mkdir(parents=True, exist_ok=True)
-    win = build_windows()
-    mac = build_macos()
-    print(f"built {win}")
-    print(f"built {mac}")
+    mode = sys.argv[1] if len(sys.argv) > 1 else "all"
+    if mode not in {"all", "--macos-only", "--windows-only"}:
+        raise SystemExit("usage: build_packages.py [--macos-only|--windows-only]")
+    if mode in {"all", "--windows-only"}:
+        print(f"built {build_windows()}")
+    if mode in {"all", "--macos-only"}:
+        print(f"built {build_macos()}")
 
 
 if __name__ == "__main__":

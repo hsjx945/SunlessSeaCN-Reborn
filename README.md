@@ -2,14 +2,14 @@
 
 **Sunless Sea 中文汉化、Chinese localization、BepInEx 文本与 UI 补丁**。本仓库为《Sunless Sea》（中文常译：**无光之海**）制作可安装的社区中文兼容包，包含完整文本 addon、中文 UI 插件，以及 Windows/macOS 一键安装与卸载脚本。
 
-当前兼容包版本：**6.0.4**。项目不包含《Sunless Sea》游戏本体或游戏原始资源，使用前请先通过 Steam 等合法渠道拥有并安装游戏。
+当前兼容包版本：Windows **6.0.4**、macOS **6.0.5**。项目不包含《Sunless Sea》游戏本体或游戏原始资源，使用前请先通过 Steam 等合法渠道拥有并安装游戏。
 
 ## 快速下载
 
 从 [GitHub Releases](https://github.com/hsjx945/SunlessSeaCN-Reborn/releases/latest) 下载对应平台的压缩包：
 
 - `SunlessSeaCN-Windows-v6.0.4.zip`：Windows 一键安装、备份、重复安装和卸载恢复。
-- `SunlessSeaCN-macOS-v6.0.4.zip`：macOS universal 一键安装并启动；修复 ZIP 解压后 `.command` 执行权限丢失问题，macOS 实机运行仍需首次验证。
+- `SunlessSeaCN-macOS-v6.0.5.zip`：针对 Unity 6/macOS 的静态 Managed UI 补丁、文本 addon 和一键安装/卸载；安装器只向 Unity 6 当前数据目录安装。
 
 ## 汉化实机截图
 
@@ -30,19 +30,19 @@
 | Steam BuildID | `24437295` |
 | 可执行文件/Unity | `6000.3.2.11106207` / `6000.3.2f1` |
 | Unity 提交标识 | `a9779f353c9b` |
-| 操作系统实机测试 | Windows 64-bit |
-| Mod 加载器 | BepInEx `5.4.23.5` |
+| 操作系统实机测试 | Windows 64-bit；macOS universal Steam app |
+| Mod 加载器 | Windows BepInEx `5.4.23.5`；macOS v6.0.5 静态 Managed Bootstrap |
 | 中文插件 | `SunlessSeaChineseTranslation 6.0.0` |
 | 文本内容 | `Sunless_sea_CN_reborn`，17 个 JSON addon 文件 |
 | DLC | Zubmariner（潜艇 DLC）文本随完整 addon 打包；DLC 本身需另购并安装 |
 
 Windows 实机日志已确认 BepInEx 和中文插件正常加载，并应用 Sunless Sea 的 Harmony 补丁。若 Steam 将游戏更新到新的 BuildID 或 Unity 主版本，**不能保证 6.0.4 仍然可用**；遇到插件不加载、启动崩溃或文本失效时，应等待本仓库发布兼容更新。
 
-macOS 安装包使用 BepInEx 5.4.23.5 macOS universal loader，已通过脚本语法、权限和包结构检查；由于当前没有 Mac 实机，本仓库暂不宣称 macOS 运行时已经验证。
+macOS v6.0.5 绑定同一 BuildID/hash：安装器拒绝不匹配的 `Sunless.Game.dll`，使用 `/usr/bin/bspatch` 临时生成并校验目标文件，再对 app 做 ad-hoc codesign strict verify。macOS 玩家数据目录使用 `~/Library/Application Support/com.failbettergames.sunlesssea`；旧版 `unity.Failbetter Games.Sunless Sea` 不会因为存在旧存档而被优先选中。
 
 ## 包含内容
 
-- BepInEx `5.4.23.5`。
+- Windows BepInEx `5.4.23.5`；macOS 使用静态 Managed Bootstrap，避免依赖 macOS 的 BepInEx Doorstop 入口。
 - `SunlessSeaChineseTranslation` UI/运行时插件 `6.0.0`。
 - `Sunless_sea_CN_reborn` 完整文本 addon，共 17 个 JSON 文件。
 - Windows 与 macOS 安装、卸载、备份和重复安装处理。
@@ -68,11 +68,11 @@ macOS 安装包使用 BepInEx 5.4.23.5 macOS universal loader，已通过脚本�
 
 ### macOS
 
-1. 解压 `SunlessSeaCN-macOS-v6.0.4.zip`。安装包可以放在下载文件夹、桌面或其他本地目录，不需要放进游戏目录。
-2. 直接双击 `Install-And-Start-SunlessSeaCN.command`；它会自动把 `payload/game` 安装到包含 `Sunless Sea.app` 的游戏根目录，把 `payload/data` 安装到玩家数据目录，然后通过 BepInEx 启动游戏。不需要手动复制文件或设置 Steam 启动项。
-3. 如果只想安装不启动，双击 `Install-SunlessSeaCN.command`；之后可选地在 Steam 启动选项中设置 `./run_bepinex.sh %command%`。
+1. 解压 `SunlessSeaCN-macOS-v6.0.5.zip`。安装包可以放在下载文件夹、桌面或其他本地目录，不需要放进游戏目录。
+2. 直接双击 `Install-And-Start-SunlessSeaCN.command`；它会校验游戏 BuildID 对应的 `Sunless.Game.dll`，应用 bsdiff 静态 UI 补丁，把 addon 写入 Unity 6 数据目录，并启动游戏。不需要设置 Steam 启动项。
+3. 如果只想安装不启动，双击 `Install-SunlessSeaCN.command`。
 
-脚本会探测 Steam 的 `Sunless Sea.app` 和常见 Unity 数据目录。这里的游戏根目录是包含 `Sunless Sea.app` 的 `common/SunlessSea` 文件夹，不是 `Sunless Sea.app/Contents`。若 Finder 报“无法运行，因为你没有正确的访问权限”，请在解压后的安装包目录执行：
+脚本会探测 Steam 的 `Sunless Sea.app`。这里的游戏根目录是包含 `Sunless Sea.app` 的 `common/SunlessSea` 文件夹，不是 `Sunless Sea.app/Contents`；Unity 6 数据目录固定优先为 `com.failbettergames.sunlesssea`，不会因 legacy 目录中有旧 saves 而选错。若 Finder 报“无法运行，因为你没有正确的访问权限”，请在解压后的安装包目录执行：
 
 ```bash
 chmod u+x Install-And-Start-SunlessSeaCN.command Install-And-Start-SunlessSeaCN.sh Install-SunlessSeaCN.command Install-SunlessSeaCN.sh Uninstall-SunlessSeaCN.command Uninstall-SunlessSeaCN.sh
@@ -80,7 +80,7 @@ xattr -dr com.apple.quarantine .
 ./Install-And-Start-SunlessSeaCN.command
 ```
 
-也可以直接用 `bash Install-And-Start-SunlessSeaCN.sh` 绕过文件执行位问题。若手动安装，只需把 `payload/game` 的内容复制到游戏根目录，把 `payload/data` 的内容复制到玩家数据目录；不要复制到 `.app/Contents`。
+也可以直接用 `bash Install-And-Start-SunlessSeaCN.sh` 绕过文件执行位问题。不要手动把补丁文件复制到 `.app/Contents`；必须使用安装器，因为它需要生成临时 patched DLL、备份原文件并重签 app。
 
 卸载时双击 `Uninstall-SunlessSeaCN.command`。必要时可只对游戏目录移除隔离属性：
 
@@ -96,7 +96,7 @@ xattr -dr com.apple.quarantine "$HOME/Library/Application Support/Steam/steamapp
 
 ### 能不能不用设置，点击一个文件就完成？
 
-可以。macOS v6.0.4 解压后双击 `Install-And-Start-SunlessSeaCN.command`，会自动安装汉化并直接通过 BepInEx 启动游戏，不需要设置 Steam 启动项。Steam 客户端未运行时，脚本会尝试自动打开它。macOS 对未签名的下载文件仍可能显示一次系统安全确认，这是系统的正常保护提示，无法由补丁安全地永久绕过。
+可以。macOS v6.0.5 解压后双击 `Install-And-Start-SunlessSeaCN.command`，会自动校验并安装静态补丁、文本 addon，然后打开游戏，不需要设置 Steam 启动项。macOS 对未签名的下载文件仍可能显示一次系统安全确认，这是系统的正常保护提示。
 
 ### Sunless Sea 汉化支持哪个版本？
 
@@ -108,7 +108,7 @@ xattr -dr com.apple.quarantine "$HOME/Library/Application Support/Steam/steamapp
 
 ### Windows 和 macOS 都能用吗？
 
-Windows 已在上述 Steam 版本上完成实机启动和插件加载验证。macOS 提供 universal 安装包和卸载脚本，但当前仍需要 Mac 实机首次启动验证。
+Windows 已在上述 Steam 版本上完成实机启动和插件加载验证。macOS v6.0.5 提供 universal 安装包和卸载脚本；它只支持本版本的 Unity 6 Mono Managed DLL hash。
 
 ### 这是《Sunless Sea》游戏本体吗？
 
@@ -124,8 +124,8 @@ Windows 已在上述 Steam 版本上完成实机启动和插件加载验证。ma
 
 - Windows 临时目录：安装、重复安装、备份、卸载恢复通过。
 - Windows Steam 实机：游戏启动后日志确认 BepInEx `5.4.23.5`、中文插件 `6.0.0` 加载并应用 Harmony。
-- macOS：安装器和 BepInEx shell 脚本通过语法检查；压缩包保留脚本可执行权限，包含 17 个 addon JSON，未混入 Windows `winhttp.dll`。
-- macOS 游戏运行时：无法在 Windows 上模拟，需 Mac 实机首次启动确认。
+- macOS：Bash 3.2 安装/重复安装/卸载/失败回滚沙箱通过；ZIP 保留脚本 755 权限，包含 17 个 addon JSON，不包含完整 `Sunless.Game.dll`。
+- macOS：static Managed patch 已在真实 Steam app 成功加载 UI Harmony 与正确 Unity 6 数据根；Steam BuildID/hash 变更时安装器会安全拒绝。
 
 ## 参考与致谢
 
