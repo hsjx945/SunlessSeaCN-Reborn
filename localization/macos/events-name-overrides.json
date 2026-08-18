@@ -1,0 +1,1609 @@
+{
+  "version": 1,
+  "description": "玩家可见事件名称覆盖；每项严格按事件 ID 和旧值匹配。",
+  "overrides": [
+    {
+      "id": 176054,
+      "field": "Description",
+      "source": "愉悦的女探险家靠在船栏杆上, 一脸厌恶地嗅着那潮湿的空气. \"真是个肮脏又潮湿的小破地方. 哦, 不过, 我们该忍忍.\"\n\n在看到地方官一瘸一拐地走来时, 她直起了腰. 一丝刻薄而虚伪的笑容在她脸上展开. \"啊! 是你! 我的好原始人!\" 她叫道, 大步走下跳板叉紧了胳膊.  \"那么, 现在, 我来这里搜索你们第一任帝王的宝库, 而且因此我需要一些东西. 你们能拿出手的最好的工人, 还有工具, 还有一些食物. 你能听懂我的话吗?\"\n\n她摇了摇头, 没给地方官回答的时间. \"食----物----,\" 她重复道. \"<i>Komprenas?</i> 哦亲爱的, 我想我们应该要在这里过一段时间了. 听着, 我听说你的小伙伴们相当喜欢灵魂. 我们应该像更高级的灵长类一样讨论那个吗?\"",
+      "translation": "愉悦的女探险家靠在船栏杆上, 一脸厌恶地嗅着那潮湿的空气. \"真是个肮脏又潮湿的小破地方. 哦, 不过, 我们该忍忍.\"\n\n在看到地方官一瘸一拐地走来时, 她直起了腰. 一丝刻薄而虚伪的笑容在她脸上展开. \"啊! 是你! 我的好原始人!\" 她叫道, 大步走下跳板叉紧了胳膊.  \"那么, 现在, 我来这里搜索你们第一任帝王的宝库, 而且因此我需要一些东西. 你们能拿出手的最好的工人, 还有工具, 还有一些食物. 你能听懂我的话吗?\"\n\n她摇了摇头, 没给地方官回答的时间. \"食----物----,\" 她重复道. \"<i>听得懂吗？</i> 哦亲爱的, 我想我们应该要在这里过一段时间了. 听着, 我听说你的小伙伴们相当喜欢灵魂. 我们应该像更高级的灵长类一样讨论那个吗?\"",
+      "context": "macOS visible Description repair"
+    },
+    {
+      "id": 185563,
+      "field": "Name",
+      "source": "All Testing Qualities",
+      "translation": "全部测试属性",
+      "context": "Branch Name in event 124489"
+    },
+    {
+      "id": 194329,
+      "field": "Name",
+      "source": "cc hop",
+      "translation": "测试跳转",
+      "context": "Branch Name in event 124489"
+    },
+    {
+      "id": 149103,
+      "field": "Name",
+      "source": "O misery!",
+      "translation": "真是悲惨！",
+      "context": "RareSuccessEvent Name in event 149095"
+    },
+    {
+      "id": 155166,
+      "field": "Name",
+      "source": "Bandaging the woooooooound -",
+      "translation": "包扎伤口——",
+      "context": "RareSuccessEvent Name in event 151243"
+    },
+    {
+      "id": 155169,
+      "field": "Name",
+      "source": "Bandaging the woooooooound -",
+      "translation": "包扎伤口——",
+      "context": "RareSuccessEvent Name in event 151243"
+    },
+    {
+      "id": 243804,
+      "field": "Name",
+      "source": "Bandaging the woooooooound -",
+      "translation": "包扎伤口——",
+      "context": "RareSuccessEvent Name in event 151243"
+    },
+    {
+      "id": 243806,
+      "field": "Name",
+      "source": "Bandaging the woooooooound -",
+      "translation": "包扎伤口——",
+      "context": "RareSuccessEvent Name in event 151243"
+    },
+    {
+      "id": 150662,
+      "field": "Name",
+      "source": "\"Canst thou draw out Leviathan with a hook?\"",
+      "translation": "你能用钩子钓出利维坦吗？",
+      "context": "RareSuccessEvent Name in event 150657"
+    },
+    {
+      "id": 151255,
+      "field": "Name",
+      "source": "The Rayed Wheel",
+      "translation": "放射之轮",
+      "context": "RareSuccessEvent Name in event 150770"
+    },
+    {
+      "id": 223597,
+      "field": "Name",
+      "source": "Testing Zubmariner Islands",
+      "translation": "测试：祖布马里纳岛屿",
+      "context": "Event Name in event 223597"
+    },
+    {
+      "id": 181529,
+      "field": "Name",
+      "source": "Give any test quality",
+      "translation": "赋予任意测试属性",
+      "context": "Branch Name in event 223597"
+    },
+    {
+      "id": 187726,
+      "field": "Name",
+      "source": "TEsting Haunted interactable",
+      "translation": "测试：闹鬼交互物",
+      "context": "Branch Name in event 223597"
+    },
+    {
+      "id": 239184,
+      "field": "Name",
+      "source": "A wriggling trophy",
+      "translation": "蠕动的战利品",
+      "context": "RareSuccessEvent Name in event 239180"
+    },
+    {
+      "id": 242916,
+      "field": "Name",
+      "source": "Monster links",
+      "translation": "怪物链接",
+      "context": "Event Name in event 242916"
+    },
+    {
+      "id": 139746,
+      "field": "Name",
+      "source": "Currently Unused - Down",
+      "translation": "暂未使用——向下",
+      "context": "Event Name in event 139746"
+    },
+    {
+      "id": 128949,
+      "field": "Name",
+      "source": "I would always rather have been a boat - moving on.",
+      "translation": "我宁愿一直是一艘船——继续前行。",
+      "context": "Branch Name in event 150987"
+    },
+    {
+      "id": 150920,
+      "field": "Name",
+      "source": "3 - Walking",
+      "translation": "三——行走",
+      "context": "Event Name in event 150920"
+    },
+    {
+      "id": 128904,
+      "field": "Name",
+      "source": "Percieved past actions",
+      "translation": "过去的行动",
+      "context": "Branch Name in event 150920"
+    },
+    {
+      "id": 128959,
+      "field": "Name",
+      "source": "Climbing it - flowstone - alabaster.",
+      "translation": "攀爬——流岩——雪花石膏。",
+      "context": "Branch Name in event 150929"
+    },
+    {
+      "id": 128901,
+      "field": "Name",
+      "source": "Unique to choice.",
+      "translation": "仅限此选项。",
+      "context": "Branch Name in event 150942"
+    },
+    {
+      "id": 128933,
+      "field": "Name",
+      "source": "Talks about the ice age - gets deeper.",
+      "translation": "谈论冰河时代——更深入",
+      "context": "Branch Name in event 150942"
+    },
+    {
+      "id": 128934,
+      "field": "Name",
+      "source": "Looking out from the edge - so much looking out.",
+      "translation": "从边缘眺望——不断眺望",
+      "context": "Branch Name in event 150942"
+    },
+    {
+      "id": 128935,
+      "field": "Name",
+      "source": "Ice Age 2",
+      "translation": "冰河时代二",
+      "context": "Branch Name in event 150942"
+    },
+    {
+      "id": 177612,
+      "field": "Name",
+      "source": "UNUSED - Discuss your business for him",
+      "translation": "未使用——与他谈生意",
+      "context": "Branch Name in event 230554"
+    },
+    {
+      "id": 174592,
+      "field": "Name",
+      "source": "A marvellous night out",
+      "translation": "一夜奇遇",
+      "context": "RareSuccessEvent Name in event 141880"
+    },
+    {
+      "id": 174595,
+      "field": "Name",
+      "source": "A good night out",
+      "translation": "愉快的一晚",
+      "context": "RareSuccessEvent Name in event 141880"
+    },
+    {
+      "id": 193918,
+      "field": "Name",
+      "source": "Overheard In The Brig",
+      "translation": "在禁闭室偷听",
+      "context": "Event Name in event 193918"
+    },
+    {
+      "id": 258552,
+      "field": "Name",
+      "source": "TBD...",
+      "translation": "待定……",
+      "context": "DefaultEvent Name in event 254670"
+    },
+    {
+      "id": 263130,
+      "field": "Name",
+      "source": "The ties that bind",
+      "translation": "维系之情",
+      "context": "DefaultEvent Name in event 254670"
+    },
+    {
+      "id": 193032,
+      "field": "Name",
+      "source": "Unearth a portrait of a time",
+      "translation": "挖掘一幅时代肖像",
+      "context": "Branch Name in event 254681"
+    },
+    {
+      "id": 255563,
+      "field": "Name",
+      "source": "UNUSED Bacchanalia in Ivory",
+      "translation": "未使用——象牙狂欢",
+      "context": "Event Name in event 255563"
+    },
+    {
+      "id": 258148,
+      "field": "Name",
+      "source": "Treasure of the Ages",
+      "translation": "时代的宝藏",
+      "context": "RareSuccessEvent Name in event 255569"
+    },
+    {
+      "id": 259412,
+      "field": "Name",
+      "source": "The flight from Nidah",
+      "translation": "逃离尼达",
+      "context": "DefaultEvent Name in event 259411"
+    },
+    {
+      "id": 259421,
+      "field": "Name",
+      "source": "The flight from Nidah",
+      "translation": "逃离尼达",
+      "context": "DefaultEvent Name in event 259411"
+    },
+    {
+      "id": 259424,
+      "field": "Name",
+      "source": "The flight from Nidah",
+      "translation": "逃离尼达",
+      "context": "DefaultEvent Name in event 259411"
+    },
+    {
+      "id": 243563,
+      "field": "Name",
+      "source": "A survivor ",
+      "translation": "一名幸存者",
+      "context": "RareSuccessEvent Name in event 242591"
+    },
+    {
+      "id": 190855,
+      "field": "Name",
+      "source": "Reset the Cladery Heir",
+      "translation": "重置克莱德里继承人",
+      "context": "Branch Name in event 245067"
+    },
+    {
+      "id": 254204,
+      "field": "Name",
+      "source": "Much better off",
+      "translation": "好得多",
+      "context": "RareSuccessEvent Name in event 245067"
+    },
+    {
+      "id": 240135,
+      "field": "Name",
+      "source": "BROKEN DO NOT USE Clone: The Crowded Mouth",
+      "translation": "损坏勿用：拥挤之口副本",
+      "context": "Event Name in event 240135"
+    },
+    {
+      "id": 239967,
+      "field": "Name",
+      "source": "The Crowded MouthBROKEN",
+      "translation": "拥挤之口（损坏）",
+      "context": "Event Name in event 239967"
+    },
+    {
+      "id": 245022,
+      "field": "Name",
+      "source": "X",
+      "translation": "未知标记",
+      "context": "Event Name in event 245022"
+    },
+    {
+      "id": 188130,
+      "field": "Name",
+      "source": "Play a round of Snaplamprey",
+      "translation": "玩一局捕牙鱼",
+      "context": "Branch Name in event 246528"
+    },
+    {
+      "id": 188147,
+      "field": "Name",
+      "source": "Leave the Maw-Shrine",
+      "translation": "离开大嘴神殿",
+      "context": "Branch Name in event 246551"
+    },
+    {
+      "id": 194295,
+      "field": "Name",
+      "source": "OLD VERSION (RETIRED) Deliver the Almost Dead Man's letter",
+      "translation": "旧版本（已退役）：递送濒死之人的信",
+      "context": "Branch Name in event 260523"
+    },
+    {
+      "id": 260558,
+      "field": "Name",
+      "source": "Honour among theives",
+      "translation": "盗亦有道",
+      "context": "DefaultEvent Name in event 260557"
+    },
+    {
+      "id": 231175,
+      "field": "Name",
+      "source": "Cold consideration",
+      "translation": "冷静思量",
+      "context": "SuccessEvent Name in event 230583"
+    },
+    {
+      "id": 181754,
+      "field": "Name",
+      "source": "Shapeling days",
+      "translation": "塑形者的日子",
+      "context": "RareSuccessEvent Name in event 181469"
+    },
+    {
+      "id": 243557,
+      "field": "Name",
+      "source": "The Creeping Drown (REDUNDANT?)",
+      "translation": "蔓延的溺亡（冗余）",
+      "context": "Event Name in event 243557"
+    },
+    {
+      "id": 243604,
+      "field": "Name",
+      "source": "Flourishing Zubmarine Shipwreck",
+      "translation": "繁盛的祖布马里纳沉船",
+      "context": "Event Name in event 243604"
+    },
+    {
+      "id": 243692,
+      "field": "Name",
+      "source": "Sunsunsun",
+      "translation": "太阳太阳太阳",
+      "context": "DefaultEvent Name in event 243691"
+    },
+    {
+      "id": 243693,
+      "field": "Name",
+      "source": "Avoid the glare of the sunsunsun",
+      "translation": "避开太阳太阳太阳的炫光",
+      "context": "SuccessEvent Name in event 243691"
+    },
+    {
+      "id": 236820,
+      "field": "Name",
+      "source": "Tryworks",
+      "translation": "鲸脂熬炼厂",
+      "context": "DefaultEvent Name in event 236754"
+    },
+    {
+      "id": 237686,
+      "field": "Name",
+      "source": "Tryworks",
+      "translation": "鲸脂熬炼厂",
+      "context": "DefaultEvent Name in event 236754"
+    },
+    {
+      "id": 236760,
+      "field": "Name",
+      "source": "Clone: You have defeated a Wreckship",
+      "translation": "副本：你击败了残骸船",
+      "context": "Event Name in event 236760"
+    },
+    {
+      "id": 239768,
+      "field": "Name",
+      "source": "Stooping to conquer",
+      "translation": "以弱胜强",
+      "context": "SuccessEvent Name in event 238357"
+    },
+    {
+      "id": 186188,
+      "field": "Name",
+      "source": "Leave the Cleft",
+      "translation": "离开裂缝",
+      "context": "Branch Name in event 240002"
+    },
+    {
+      "id": 183786,
+      "field": "Name",
+      "source": "Try to catch Arnold",
+      "translation": "试着抓住阿诺德",
+      "context": "Branch Name in event 240004"
+    },
+    {
+      "id": 240069,
+      "field": "Name",
+      "source": "(REDUNDANT) The Cleft Collapses (REDUNDANT)",
+      "translation": "（冗余）裂缝崩塌（冗余）",
+      "context": "Event Name in event 240069"
+    },
+    {
+      "id": 166267,
+      "field": "Name",
+      "source": "LIMBO'D - Saviour's Rocks Magic Cheat Menu",
+      "translation": "临界：救世岩魔法作弊菜单",
+      "context": "Event Name in event 166267"
+    },
+    {
+      "id": 138085,
+      "field": "Name",
+      "source": "The Nice Cup Of Tea of Terror Reduction",
+      "translation": "降低恐惧的好茶",
+      "context": "Branch Name in event 166267"
+    },
+    {
+      "id": 166815,
+      "field": "Name",
+      "source": "Ah, that's better...",
+      "translation": "这样好多了……",
+      "context": "DefaultEvent Name in event 166267"
+    },
+    {
+      "id": 138214,
+      "field": "Name",
+      "source": "Flask Of Opprobrium",
+      "translation": "恶名药瓶",
+      "context": "Branch Name in event 166267"
+    },
+    {
+      "id": 167066,
+      "field": "Name",
+      "source": "Grr! Boo! Boo!",
+      "translation": "哼！呸！呸！",
+      "context": "DefaultEvent Name in event 166267"
+    },
+    {
+      "id": 180364,
+      "field": "Name",
+      "source": "Tock, tick",
+      "translation": "滴答，滴答",
+      "context": "RareSuccessEvent Name in event 180310"
+    },
+    {
+      "id": 181177,
+      "field": "Name",
+      "source": "Back to the fold",
+      "translation": "回归正轨",
+      "context": "DefaultEvent Name in event 181066"
+    },
+    {
+      "id": 193100,
+      "field": "Name",
+      "source": "Appropriate for any occasion",
+      "translation": "适合任何场合",
+      "context": "DefaultEvent Name in event 192724"
+    },
+    {
+      "id": 193101,
+      "field": "Name",
+      "source": "The Modiste goes to work",
+      "translation": "裁缝师开始工作",
+      "context": "DefaultEvent Name in event 192724"
+    },
+    {
+      "id": 193102,
+      "field": "Name",
+      "source": "Style over substance",
+      "translation": "形式胜于内容",
+      "context": "DefaultEvent Name in event 192724"
+    },
+    {
+      "id": 193103,
+      "field": "Name",
+      "source": "Creative indifferences",
+      "translation": "创意上的漠然",
+      "context": "DefaultEvent Name in event 192724"
+    },
+    {
+      "id": 193067,
+      "field": "Name",
+      "source": "Hidden poetry",
+      "translation": "隐藏的诗篇",
+      "context": "DefaultEvent Name in event 192740"
+    },
+    {
+      "id": 182219,
+      "field": "Name",
+      "source": "_REUSE",
+      "translation": "复用",
+      "context": "Event Name in event 182219"
+    },
+    {
+      "id": 171367,
+      "field": "Name",
+      "source": "Lean pickings",
+      "translation": "所剩无几",
+      "context": "DefaultEvent Name in event 171364"
+    },
+    {
+      "id": 171368,
+      "field": "Name",
+      "source": "Desperate innovations",
+      "translation": "绝望的创新",
+      "context": "DefaultEvent Name in event 171364"
+    },
+    {
+      "id": 171402,
+      "field": "Name",
+      "source": "Lean pickings",
+      "translation": "所剩无几",
+      "context": "DefaultEvent Name in event 171399"
+    },
+    {
+      "id": 173747,
+      "field": "Name",
+      "source": "Glints like eyes",
+      "translation": "闪烁如眼",
+      "context": "DefaultEvent Name in event 173743"
+    },
+    {
+      "id": 174339,
+      "field": "Name",
+      "source": "You've defeated a Merchant Cruiser",
+      "translation": "你击败了一艘商人巡航舰",
+      "context": "Event Name in event 174339"
+    },
+    {
+      "id": 175577,
+      "field": "Name",
+      "source": "Old enemies",
+      "translation": "旧日仇敌",
+      "context": "RareSuccessEvent Name in event 175552"
+    },
+    {
+      "id": 169526,
+      "field": "Name",
+      "source": "Something like Christmas",
+      "translation": "有点像圣诞节",
+      "context": "RareSuccessEvent Name in event 149729"
+    },
+    {
+      "id": 150216,
+      "field": "Name",
+      "source": "Placeholder Beastie Loot",
+      "translation": "占位：野兽战利品",
+      "context": "Event Name in event 150216"
+    },
+    {
+      "id": 155739,
+      "field": "Name",
+      "source": "Something!",
+      "translation": "什么东西！",
+      "context": "DefaultEvent Name in event 150216"
+    },
+    {
+      "id": 150220,
+      "field": "Name",
+      "source": "Placeholder Beastie",
+      "translation": "占位：野兽",
+      "context": "Event Name in event 150220"
+    },
+    {
+      "id": 151456,
+      "field": "Name",
+      "source": "Betrayal!",
+      "translation": "背叛！",
+      "context": "RareSuccessEvent Name in event 151261"
+    },
+    {
+      "id": 130592,
+      "field": "Name",
+      "source": "Loot the bodies",
+      "translation": "搜刮尸体",
+      "context": "Branch Name in event 153586"
+    },
+    {
+      "id": 153587,
+      "field": "Name",
+      "source": "Bare pickings",
+      "translation": "所剩无几",
+      "context": "DefaultEvent Name in event 153586"
+    },
+    {
+      "id": 155738,
+      "field": "Name",
+      "source": "Ugly customers, ugly methods",
+      "translation": "丑陋的客人，丑陋的手段",
+      "context": "DefaultEvent Name in event 153586"
+    },
+    {
+      "id": 159502,
+      "field": "Name",
+      "source": "The roofs of the College",
+      "translation": "学院的屋顶",
+      "context": "DefaultEvent Name in event 159416"
+    },
+    {
+      "id": 159505,
+      "field": "Name",
+      "source": "Lost!",
+      "translation": "迷路了！",
+      "context": "DefaultEvent Name in event 159416"
+    },
+    {
+      "id": 159533,
+      "field": "Name",
+      "source": "Safe and silent",
+      "translation": "安全而无声",
+      "context": "SuccessEvent Name in event 159416"
+    },
+    {
+      "id": 169416,
+      "field": "Name",
+      "source": "Bud form",
+      "translation": "芽形",
+      "context": "DefaultEvent Name in event 169406"
+    },
+    {
+      "id": 138514,
+      "field": "Name",
+      "source": "Safety in darkness",
+      "translation": "黑暗中的安全",
+      "context": "DefaultEvent Name in event 138512"
+    },
+    {
+      "id": 138516,
+      "field": "Name",
+      "source": "All the colours",
+      "translation": "所有色彩",
+      "context": "DefaultEvent Name in event 138512"
+    },
+    {
+      "id": 148074,
+      "field": "Name",
+      "source": "Tenacity",
+      "translation": "坚韧",
+      "context": "DefaultEvent Name in event 148072"
+    },
+    {
+      "id": 148103,
+      "field": "Name",
+      "source": "\"Irroverair.\"",
+      "translation": "“伊罗弗艾尔。”",
+      "context": "DefaultEvent Name in event 148102"
+    },
+    {
+      "id": 149476,
+      "field": "Name",
+      "source": "Of their bones...",
+      "translation": "他们的骨头……",
+      "context": "RareSuccessEvent Name in event 148601"
+    },
+    {
+      "id": 149061,
+      "field": "Name",
+      "source": "-Scenario Template",
+      "translation": "场景模板",
+      "context": "Event Name in event 149061"
+    },
+    {
+      "id": 127799,
+      "field": "Name",
+      "source": "No",
+      "translation": "否",
+      "context": "Branch Name in event 149061"
+    },
+    {
+      "id": 127800,
+      "field": "Name",
+      "source": "Yes",
+      "translation": "是",
+      "context": "Branch Name in event 149061"
+    },
+    {
+      "id": 146444,
+      "field": "Name",
+      "source": "Davids and Goliaths",
+      "translation": "大卫与歌利亚",
+      "context": "SuccessEvent Name in event 143960"
+    },
+    {
+      "id": 144193,
+      "field": "Name",
+      "source": "[xxxxx] MORE MORE T T T [xxxxx]",
+      "translation": "【占位】更多更多【占位】",
+      "context": "DefaultEvent Name in event 144191"
+    },
+    {
+      "id": 144196,
+      "field": "Name",
+      "source": "Tenacity",
+      "translation": "坚韧",
+      "context": "DefaultEvent Name in event 144194"
+    },
+    {
+      "id": 148476,
+      "field": "Name",
+      "source": "Your attention drifts",
+      "translation": "你的注意力开始飘忽",
+      "context": "RareSuccessEvent Name in event 144292"
+    },
+    {
+      "id": 155736,
+      "field": "Name",
+      "source": "Glints like eyes",
+      "translation": "闪烁如眼",
+      "context": "DefaultEvent Name in event 144296"
+    },
+    {
+      "id": 135240,
+      "field": "Name",
+      "source": "_REUSE",
+      "translation": "复用",
+      "context": "Event Name in event 135240"
+    },
+    {
+      "id": 195689,
+      "field": "Name",
+      "source": "The Chronicler's proverbs",
+      "translation": "编年史家的箴言",
+      "context": "DefaultEvent Name in event 194381"
+    },
+    {
+      "id": 149336,
+      "field": "Name",
+      "source": "Unusual activity",
+      "translation": "异常活动",
+      "context": "RareSuccessEvent Name in event 143340"
+    },
+    {
+      "id": 176548,
+      "field": "Name",
+      "source": "ZLIMBO'D - UNUSED CLOSER",
+      "translation": "临界：未使用的收尾",
+      "context": "Event Name in event 176548"
+    },
+    {
+      "id": 176695,
+      "field": "Name",
+      "source": "The Delightful Adventuress lowers the rapier, smiles tightly",
+      "translation": "愉快的女冒险家放下细剑，抿嘴一笑",
+      "context": "DefaultEvent Name in event 176669"
+    },
+    {
+      "id": 176710,
+      "field": "Name",
+      "source": "She almost, but doesn't quite, register surprise",
+      "translation": "她几乎察觉到惊讶，却又没有",
+      "context": "DefaultEvent Name in event 176669"
+    },
+    {
+      "id": 176715,
+      "field": "Name",
+      "source": "The Delightful Adventuress snarls",
+      "translation": "愉快的女冒险家咆哮",
+      "context": "DefaultEvent Name in event 176669"
+    },
+    {
+      "id": 176726,
+      "field": "Name",
+      "source": "Barnabas nods, ignoring the angry protests",
+      "translation": "巴纳巴斯点头，无视愤怒的抗议",
+      "context": "DefaultEvent Name in event 176669"
+    },
+    {
+      "id": 176494,
+      "field": "Name",
+      "source": "The Not-So Delightful Adventuress",
+      "translation": "不那么愉快的女冒险家",
+      "context": "Event Name in event 176494"
+    },
+    {
+      "id": 175989,
+      "field": "Name",
+      "source": "Adventuring supplies",
+      "translation": "冒险物资",
+      "context": "DefaultEvent Name in event 175977"
+    },
+    {
+      "id": 176021,
+      "field": "Name",
+      "source": "An evening of careful abstinence",
+      "translation": "谨慎禁欲的一晚",
+      "context": "DefaultEvent Name in event 175977"
+    },
+    {
+      "id": 178392,
+      "field": "Name",
+      "source": "Fever takes you in the night",
+      "translation": "夜里发烧",
+      "context": "DefaultEvent Name in event 175977"
+    },
+    {
+      "id": 179887,
+      "field": "Name",
+      "source": "You claw your way back to health",
+      "translation": "你挣扎着恢复健康",
+      "context": "SuccessEvent Name in event 175977"
+    },
+    {
+      "id": 175692,
+      "field": "Name",
+      "source": "Berries of the gods!",
+      "translation": "诸神的浆果！",
+      "context": "RareSuccessEvent Name in event 175466"
+    },
+    {
+      "id": 175487,
+      "field": "Name",
+      "source": "ZLIMBO'D - TOOLS",
+      "translation": "临界：工具",
+      "context": "Event Name in event 175487"
+    },
+    {
+      "id": 143290,
+      "field": "Name",
+      "source": "Reset Phase 1",
+      "translation": "重置阶段一",
+      "context": "Branch Name in event 175487"
+    },
+    {
+      "id": 175488,
+      "field": "Name",
+      "source": "Reset!",
+      "translation": "重置！",
+      "context": "DefaultEvent Name in event 175487"
+    },
+    {
+      "id": 143675,
+      "field": "Name",
+      "source": "Jump to Phase 2",
+      "translation": "跳到阶段二",
+      "context": "Branch Name in event 175487"
+    },
+    {
+      "id": 182328,
+      "field": "Name",
+      "source": "A cellarful of bones",
+      "translation": "一窖骨骸",
+      "context": "RareSuccessEvent Name in event 138473"
+    },
+    {
+      "id": 166944,
+      "field": "Name",
+      "source": "A prize of silk!",
+      "translation": "一份丝绸奖品！",
+      "context": "RareSuccessEvent Name in event 166936"
+    },
+    {
+      "id": 167211,
+      "field": "Name",
+      "source": "A party of Weavers",
+      "translation": "一群织工",
+      "context": "RareSuccessEvent Name in event 166936"
+    },
+    {
+      "id": 167797,
+      "field": "Name",
+      "source": "She peels them away, one at a time",
+      "translation": "她一次剥下一层",
+      "context": "DefaultEvent Name in event 167219"
+    },
+    {
+      "id": 194385,
+      "field": "Name",
+      "source": "An unexpected audience",
+      "translation": "意外的听众",
+      "context": "DefaultEvent Name in event 193079"
+    },
+    {
+      "id": 154806,
+      "field": "Name",
+      "source": "Intimidate the crew",
+      "translation": "威吓船员",
+      "context": "Branch Name in event 193079"
+    },
+    {
+      "id": 154809,
+      "field": "Name",
+      "source": "Execute the Pirate-Poet",
+      "translation": "处决海盗诗人",
+      "context": "Branch Name in event 193079"
+    },
+    {
+      "id": 143382,
+      "field": "Name",
+      "source": "Quaker's Haven (RETIRED)",
+      "translation": "贵格避风港（已退役）",
+      "context": "Event Name in event 143382"
+    },
+    {
+      "id": 230535,
+      "field": "Name",
+      "source": "Spheres of influence ",
+      "translation": "势力范围",
+      "context": "DefaultEvent Name in event 230481"
+    },
+    {
+      "id": 177567,
+      "field": "Name",
+      "source": "Advance Time +10",
+      "translation": "推进时间十回合",
+      "context": "Branch Name in event 230481"
+    },
+    {
+      "id": 260634,
+      "field": "Name",
+      "source": "Isery, Cat's Chiefest Claw",
+      "translation": "伊瑟琳，猫之首爪",
+      "context": "DefaultEvent Name in event 168435"
+    },
+    {
+      "id": 152424,
+      "field": "Name",
+      "source": "Meg Test",
+      "translation": "梅格测试",
+      "context": "Event Name in event 152424"
+    },
+    {
+      "id": 129882,
+      "field": "Name",
+      "source": "Something awaits you to 0",
+      "translation": "有东西等你到零",
+      "context": "Branch Name in event 152424"
+    },
+    {
+      "id": 129883,
+      "field": "Name",
+      "source": "saw to 10",
+      "translation": "看到十",
+      "context": "Branch Name in event 152424"
+    },
+    {
+      "id": 148040,
+      "field": "Name",
+      "source": "Emland Testing Storylet",
+      "translation": "埃姆兰测试故事",
+      "context": "Event Name in event 148040"
+    },
+    {
+      "id": 148041,
+      "field": "Name",
+      "source": "Reset!",
+      "translation": "重置！",
+      "context": "DefaultEvent Name in event 148040"
+    },
+    {
+      "id": 127068,
+      "field": "Name",
+      "source": "Give yourself All the Wide Zee at 80",
+      "translation": "将宽海值设为八十",
+      "context": "Branch Name in event 148040"
+    },
+    {
+      "id": 148042,
+      "field": "Name",
+      "source": "There, 20 it is.",
+      "translation": "好了，现在是二十。",
+      "context": "DefaultEvent Name in event 148040"
+    },
+    {
+      "id": 127069,
+      "field": "Name",
+      "source": "Give yourself All the Wide Zee at 20",
+      "translation": "将宽海值设为二十",
+      "context": "Branch Name in event 148040"
+    },
+    {
+      "id": 148043,
+      "field": "Name",
+      "source": "There, 40 it is.",
+      "translation": "好了，现在是四十。",
+      "context": "DefaultEvent Name in event 148040"
+    },
+    {
+      "id": 127070,
+      "field": "Name",
+      "source": "Give yourself All the Wide Zee at 40",
+      "translation": "将宽海值设为四十",
+      "context": "Branch Name in event 148040"
+    },
+    {
+      "id": 148044,
+      "field": "Name",
+      "source": "There, 60 it is.",
+      "translation": "好了，现在是六十。",
+      "context": "DefaultEvent Name in event 148040"
+    },
+    {
+      "id": 127071,
+      "field": "Name",
+      "source": "Give yourself All the Wide Zee at 60",
+      "translation": "将宽海值设为六十",
+      "context": "Branch Name in event 148040"
+    },
+    {
+      "id": 148045,
+      "field": "Name",
+      "source": "There, 80 it is.",
+      "translation": "好了，现在是八十。",
+      "context": "DefaultEvent Name in event 148040"
+    },
+    {
+      "id": 127072,
+      "field": "Name",
+      "source": "Give yourself Iron 50",
+      "translation": "将铁设为五十",
+      "context": "Branch Name in event 148040"
+    },
+    {
+      "id": 148046,
+      "field": "Name",
+      "source": "There, that should help",
+      "translation": "好了，这应该有帮助",
+      "context": "DefaultEvent Name in event 148040"
+    },
+    {
+      "id": 127073,
+      "field": "Name",
+      "source": "Give yourself Veils 50",
+      "translation": "将面纱设为五十",
+      "context": "Branch Name in event 148040"
+    },
+    {
+      "id": 148047,
+      "field": "Name",
+      "source": "50 Veils",
+      "translation": "五十点面纱",
+      "context": "DefaultEvent Name in event 148040"
+    },
+    {
+      "id": 127097,
+      "field": "Name",
+      "source": "Give yourself Mirrors 50",
+      "translation": "将镜设为五十",
+      "context": "Branch Name in event 148040"
+    },
+    {
+      "id": 148083,
+      "field": "Name",
+      "source": "There, that should help",
+      "translation": "好了，这应该有帮助",
+      "context": "DefaultEvent Name in event 148040"
+    },
+    {
+      "id": 127099,
+      "field": "Name",
+      "source": "Hearts 50",
+      "translation": "五十点心",
+      "context": "Branch Name in event 148040"
+    },
+    {
+      "id": 147957,
+      "field": "Name",
+      "source": "A familiar smell and an old brazier",
+      "translation": "熟悉的气味与旧火盆",
+      "context": "RareSuccessEvent Name in event 147948"
+    },
+    {
+      "id": 148032,
+      "field": "Name",
+      "source": "An abandoned log",
+      "translation": "一篇遗失的日志",
+      "context": "RareSuccessEvent Name in event 147948"
+    },
+    {
+      "id": 148036,
+      "field": "Name",
+      "source": "A shattered box",
+      "translation": "破碎的箱子",
+      "context": "RareSuccessEvent Name in event 147948"
+    },
+    {
+      "id": 148039,
+      "field": "Name",
+      "source": "Ironmongers' tools",
+      "translation": "铁匠工具",
+      "context": "RareSuccessEvent Name in event 147948"
+    },
+    {
+      "id": 245560,
+      "field": "Name",
+      "source": "Fresh Ears",
+      "translation": "新鲜耳朵",
+      "context": "DefaultEvent Name in event 152313"
+    },
+    {
+      "id": 178246,
+      "field": "Name",
+      "source": "Nothing that flies",
+      "translation": "没有会飞的东西",
+      "context": "DefaultEvent Name in event 152316"
+    },
+    {
+      "id": 208237,
+      "field": "Name",
+      "source": "Pigmote Debug",
+      "translation": "皮格莫特调试",
+      "context": "Event Name in event 208237"
+    },
+    {
+      "id": 163599,
+      "field": "Name",
+      "source": "Increase Might",
+      "translation": "提高力量",
+      "context": "Branch Name in event 208237"
+    },
+    {
+      "id": 163600,
+      "field": "Name",
+      "source": "Increase Civilisation",
+      "translation": "提高文明",
+      "context": "Branch Name in event 208237"
+    },
+    {
+      "id": 163601,
+      "field": "Name",
+      "source": "Increase Spirit",
+      "translation": "提高精神",
+      "context": "Branch Name in event 208237"
+    },
+    {
+      "id": 163602,
+      "field": "Name",
+      "source": "Decrease Might",
+      "translation": "降低力量",
+      "context": "Branch Name in event 208237"
+    },
+    {
+      "id": 163603,
+      "field": "Name",
+      "source": "Decrease Spirit",
+      "translation": "降低精神",
+      "context": "Branch Name in event 208237"
+    },
+    {
+      "id": 163604,
+      "field": "Name",
+      "source": "Decrease Civilisation",
+      "translation": "降低文明",
+      "context": "Branch Name in event 208237"
+    },
+    {
+      "id": 163605,
+      "field": "Name",
+      "source": "Reset timer",
+      "translation": "重置计时器",
+      "context": "Branch Name in event 208237"
+    },
+    {
+      "id": 163609,
+      "field": "Name",
+      "source": "Default Setup - Rat Victory",
+      "translation": "默认设置——鼠类胜利",
+      "context": "Branch Name in event 208237"
+    },
+    {
+      "id": 208250,
+      "field": "Name",
+      "source": "xxx",
+      "translation": "占位文本",
+      "context": "DefaultEvent Name in event 208237"
+    },
+    {
+      "id": 167755,
+      "field": "Name",
+      "source": "The Lorn-Fluke hits, but your crew is ready!",
+      "translation": "鳍形怪击中，但你的船员准备好了！",
+      "context": "RareSuccessEvent Name in event 167742"
+    },
+    {
+      "id": 167759,
+      "field": "Name",
+      "source": "It surfaces, straight into a barrage!",
+      "translation": "它浮出水面，正中弹幕！",
+      "context": "RareSuccessEvent Name in event 167742"
+    },
+    {
+      "id": 167763,
+      "field": "Name",
+      "source": "A cracking of spines!",
+      "translation": "脊骨开裂！",
+      "context": "RareSuccessEvent Name in event 167742"
+    },
+    {
+      "id": 167767,
+      "field": "Name",
+      "source": "The Lorn-Fluke hits, but your crew is ready!",
+      "translation": "鳍形怪击中，但你的船员准备好了！",
+      "context": "RareSuccessEvent Name in event 167742"
+    },
+    {
+      "id": 167771,
+      "field": "Name",
+      "source": "It surfaces, straight into a barrage!",
+      "translation": "它浮出水面，正中弹幕！",
+      "context": "RareSuccessEvent Name in event 167742"
+    },
+    {
+      "id": 138641,
+      "field": "Name",
+      "source": "Ramming speed!",
+      "translation": "全速撞击！",
+      "context": "Branch Name in event 167742"
+    },
+    {
+      "id": 168241,
+      "field": "Name",
+      "source": "A secret, to be sure",
+      "translation": "确实是个秘密",
+      "context": "RareSuccessEvent Name in event 167523"
+    },
+    {
+      "id": 240412,
+      "field": "Name",
+      "source": "Anything but blubber",
+      "translation": "除了鲸脂之外的一切",
+      "context": "DefaultEvent Name in event 240407"
+    },
+    {
+      "id": 184360,
+      "field": "Name",
+      "source": "Roll only a new SAY",
+      "translation": "只掷出一个新话语",
+      "context": "Branch Name in event 234938"
+    },
+    {
+      "id": 240935,
+      "field": "Name",
+      "source": "Here you go",
+      "translation": "给你",
+      "context": "DefaultEvent Name in event 234938"
+    },
+    {
+      "id": 258213,
+      "field": "Name",
+      "source": "Accept this Solace",
+      "translation": "接受这份慰藉",
+      "context": "RareSuccessEvent Name in event 238438"
+    },
+    {
+      "id": 258880,
+      "field": "Name",
+      "source": "Extraordinary success",
+      "translation": "非凡成功",
+      "context": "RareSuccessEvent Name in event 238438"
+    },
+    {
+      "id": 258494,
+      "field": "Name",
+      "source": "Coal, and other things",
+      "translation": "煤炭，以及其他东西",
+      "context": "RareSuccessEvent Name in event 238438"
+    },
+    {
+      "id": 254217,
+      "field": "Name",
+      "source": "TBD...",
+      "translation": "待定……",
+      "context": "DefaultEvent Name in event 234981"
+    },
+    {
+      "id": 238602,
+      "field": "Name",
+      "source": "Flags of light",
+      "translation": "光之旗帜",
+      "context": "RareSuccessEvent Name in event 238317"
+    },
+    {
+      "id": 238585,
+      "field": "Name",
+      "source": "How lovely it is",
+      "translation": "多么美好",
+      "context": "RareSuccessEvent Name in event 238317"
+    },
+    {
+      "id": 238584,
+      "field": "Name",
+      "source": "Time passes",
+      "translation": "时光流逝",
+      "context": "RareSuccessEvent Name in event 238317"
+    },
+    {
+      "id": 239728,
+      "field": "Name",
+      "source": "Another visitor's tale",
+      "translation": "另一位访客的故事",
+      "context": "RareSuccessEvent Name in event 238317"
+    },
+    {
+      "id": 239753,
+      "field": "Name",
+      "source": "Attend closely",
+      "translation": "仔细聆听",
+      "context": "RareSuccessEvent Name in event 238317"
+    },
+    {
+      "id": 239776,
+      "field": "Name",
+      "source": "Attend closely",
+      "translation": "仔细观察",
+      "context": "RareSuccessEvent Name in event 238317"
+    },
+    {
+      "id": 239816,
+      "field": "Name",
+      "source": "Reset...",
+      "translation": "重置……",
+      "context": "DefaultEvent Name in event 238317"
+    },
+    {
+      "id": 242133,
+      "field": "Name",
+      "source": "Attend closely",
+      "translation": "仔细聆听",
+      "context": "RareSuccessEvent Name in event 238317"
+    },
+    {
+      "id": 149172,
+      "field": "Name",
+      "source": "注册Fallen London",
+      "translation": "注册堕落的伦敦",
+      "context": "macOS visible Name repair"
+    },
+    {
+      "id": 236635,
+      "field": "Description",
+      "source": "使用 BR 标签而不是段落标签...",
+      "translation": "使用换行标签而不是段落标签……",
+      "context": "macOS visible Description repair"
+    },
+    {
+      "id": 236635,
+      "field": "Teaser",
+      "source": "使用 BR 标签而不是段落标签...",
+      "translation": "使用换行标签而不是段落标签……",
+      "context": "macOS visible Teaser repair"
+    },
+    {
+      "id": 183709,
+      "field": "Description",
+      "source": "br",
+      "translation": "换行标记",
+      "context": "macOS visible Description repair"
+    },
+    {
+      "id": 239937,
+      "field": "Description",
+      "source": "这是一个测试。\n\n对于此测试，我们使用 br 括号。",
+      "translation": "这是一个测试。\n\n对于此测试，我们使用换行标记。",
+      "context": "macOS visible Description repair"
+    },
+    {
+      "id": 239174,
+      "field": "Name",
+      "source": "Clone: 叛乱!",
+      "translation": "克隆：叛乱！",
+      "context": "macOS visible Name repair"
+    },
+    {
+      "id": 159755,
+      "field": "Description",
+      "source": "<b>缠满绷带的海鲜厨师</b>: 现在, 只要一点.\r\n<b>珍珠放逐者:</b> Fotharoothathoth!\r\n<b>海鲜厨师:</b>现在, 看. 它会长回来的.\r\n<b>放逐者:</b>Etha! Ssithakothothooth!\r\n<b>海鲜厨师:</b>你可真是不够大方.",
+      "translation": "<b>缠满绷带的海鲜厨师</b>：现在，只要一点。\n<b>珍珠放逐者：</b>福塔鲁萨托斯！\n<b>海鲜厨师：</b>现在，看。它会长回来的。\n<b>放逐者：</b>埃萨！西萨科托托斯！\n<b>海鲜厨师：</b>你可真是不够大方。",
+      "context": "macOS visible Description repair"
+    },
+    {
+      "id": 159761,
+      "field": "Description",
+      "source": "<b>珍珠流放者:</b>Othatooroth ithacithi?\r\n<b>阴暗的厨师</b>: Baragerralock. ",
+      "translation": "<b>珍珠流放者：</b>奥萨图洛斯·伊萨西提？\n<b>阴暗的厨师：</b>巴拉格拉洛克。",
+      "context": "macOS visible Description repair"
+    },
+    {
+      "id": 159761,
+      "field": "Teaser",
+      "source": "<b>珍珠流放者：</b>Othatooroth ithacithi？",
+      "translation": "<b>珍珠流放者：</b>奥萨图洛斯·伊萨西提？",
+      "context": "macOS visible Teaser repair"
+    },
+    {
+      "id": 181357,
+      "field": "Description",
+      "source": "炮手: 你好!! 我有个问题要问你.\r\n流放者: 菲尔纳法姆。炮手: 你是个塑型者, 对吗?\r\n流放者: Gosph nfoo ffierrefof。炮手: 你知道什么关于红科技的事情吗?\r\n流放者: 费罗。费罗。炮手: 不, 我明白, 但是 -\r\n流放者: 铁，即 FHESH。炮手: 哦, 随便你.",
+      "translation": "炮手：你好！我有个问题要问你。\n流放者：菲尔纳法姆。炮手：你是个塑型者，对吗？\n流放者：戈斯夫·恩福·菲尔雷福夫。炮手：你知道什么关于红科技的事情吗？\n流放者：费罗。费罗。炮手：不，我明白，但是——\n流放者：铁，即费什。炮手：哦，随便你。",
+      "context": "macOS visible Description repair"
+    },
+    {
+      "id": 181418,
+      "field": "Description",
+      "source": "玛瑙港的放逐者: 又是你.\r\n珍珠流放者: Fffrah erffuhth。玛瑙港的放逐者: 我等的已经够长了, 你还有什么话要说.\r\n珍珠流放者: 进嗬 那th 寒霜fh城!\r\n玛瑙港的放逐者: 不. 不要. 星星一直很饿. 我已经没时间了.\r\n珍珠流放者: 地球th. 是地球ht.\r\n玛瑙港的放逐者: 说完了? 那就是你要对我说的全部? ...诅咒你. 诅咒一切你族. 愿巨轴陷入火海.",
+      "translation": "玛瑙港的放逐者：又是你。\n珍珠流放者：弗拉赫·埃尔弗斯。玛瑙港的放逐者：我等的已经够长了，你还有什么话要说。\n珍珠流放者：进嗬，那是寒霜城！\n玛瑙港的放逐者：不。不要。星星一直很饿。我已经没时间了。\n珍珠流放者：地球，是地球。\n玛瑙港的放逐者：说完了？那就是你要对我说的全部？……诅咒你。诅咒一切你族。愿巨轴陷入火海。",
+      "context": "macOS visible Description repair"
+    },
+    {
+      "id": 254399,
+      "field": "Name",
+      "source": "海中偶闻: Friendly Concern ",
+      "translation": "海中偶闻：友善的关切",
+      "context": "macOS visible Name repair"
+    },
+    {
+      "id": 254399,
+      "field": "Description",
+      "source": "魔术师：很高兴看到你能和其他人一起下床走动了.我还不确定你这种人的适应能力如何.你的衣钵纹章似乎很...\r\n\r\n流放者：Nishe.很嗯嗯好.\r\n\r\n魔术师：是的,相当不错.但那些......挤压......你的边缘性和......那个光？当然...\r\n\r\n流放者：... ",
+      "translation": "魔术师：很高兴看到你能和其他人一起下床走动了。我还不确定你这种人的适应能力如何。你的衣钵纹章似乎很……\n\n流放者：尼什。很嗯嗯好。\n\n魔术师：是的，相当不错。但那些……挤压……你的边缘性和……那个光？当然……\n\n流放者：……",
+      "context": "macOS visible Description repair"
+    },
+    {
+      "id": 287252,
+      "field": "Description",
+      "source": "真菌流浪儿: 哎呀！威威！我们——哇啊！！不幸的莫格: <i>Mroaw!</i>\r\n真菌流浪儿: Eeeeee!",
+      "translation": "真菌流浪儿：哎呀！威威！我们——哇啊！！不幸的莫格：<i>呜啊！</i>\n真菌流浪儿：咿呀！",
+      "context": "macOS visible Description repair"
+    },
+    {
+      "id": 287252,
+      "field": "Teaser",
+      "source": "真菌流浪儿：Weee！ -",
+      "translation": "真菌流浪儿：呜呜！——",
+      "context": "macOS visible Teaser repair"
+    },
+    {
+      "id": 176469,
+      "field": "Name",
+      "source": "\"啊, 潇洒的 kapitano.\"",
+      "translation": "“啊，潇洒的船长。”",
+      "context": "macOS visible Name repair"
+    },
+    {
+      "id": 176464,
+      "field": "Name",
+      "source": "\"啊, 我亲爱的 kapitano!\"",
+      "translation": "“啊，我亲爱的船长！”",
+      "context": "macOS visible Name repair"
+    },
+    {
+      "id": 176467,
+      "field": "Name",
+      "source": "\"啊, 潇洒的 kapitano.\"",
+      "translation": "“啊，潇洒的船长。”",
+      "context": "macOS visible Name repair"
+    },
+    {
+      "id": 177629,
+      "field": "Name",
+      "source": "DEV - 叫来盲眼大汉",
+      "translation": "开发测试：叫来盲眼大汉",
+      "context": "macOS visible Name repair"
+    },
+    {
+      "id": 186700,
+      "field": "Name",
+      "source": "阶段 II: 获取声呐图纸",
+      "translation": "阶段二：获取声呐图纸",
+      "context": "macOS visible Name repair"
+    },
+    {
+      "id": 186702,
+      "field": "Name",
+      "source": "完成阶段 II",
+      "translation": "完成阶段二",
+      "context": "macOS visible Name repair"
+    },
+    {
+      "id": 240066,
+      "field": "Name",
+      "source": "The Debonair Deductress 从血雾中浮现.",
+      "translation": "风流的女推断者从血雾中浮现。",
+      "context": "macOS visible Name repair"
+    },
+    {
+      "id": 181436,
+      "field": "Teaser",
+      "source": "如果这是Frostfound 的珍珠，那么什么黑暗内含物激发了它？",
+      "translation": "如果这是冰霜铸的珍珠，那么什么黑暗内含物激发了它？",
+      "context": "macOS visible Teaser repair"
+    },
+    {
+      "id": 148325,
+      "field": "Name",
+      "source": "\"滚XX的蛋.\"",
+      "translation": "“滚蛋。”",
+      "context": "macOS visible Name repair"
+    },
+    {
+      "id": 183601,
+      "field": "Name",
+      "source": "就叫滚XX的蛋.",
+      "translation": "就叫滚蛋。",
+      "context": "macOS visible Name repair"
+    },
+    {
+      "id": 127110,
+      "field": "Description",
+      "source": "\"Vorragerranarigeh?\"[如果你的红心值低于50, 那么可以在这里花费一个秘密提升红心值.]",
+      "translation": "“沃拉格拉纳里赫？”[如果你的红心值低于50，那么可以在这里花费一个秘密提升红心值。]",
+      "context": "macOS visible Description repair"
+    },
+    {
+      "id": 144191,
+      "field": "Description",
+      "source": "O[xxxxx] THRR [xxxxx] N 库特 TH[xxxxxx]。",
+      "translation": "“呜……库特……”。",
+      "context": "macOS visible Description repair"
+    },
+    {
+      "id": 144191,
+      "field": "Teaser",
+      "source": "O[xxxxx] THRR [xxxxx] N 库特 TH[xxxxxx]...",
+      "translation": "“呜……库特……”……",
+      "context": "macOS visible Teaser repair"
+    },
+    {
+      "id": 176774,
+      "field": "Name",
+      "source": "\"我的 kapitano! 我们就差一点了!\"",
+      "translation": "“我的船长！我们就差一点了！”",
+      "context": "macOS visible Name repair"
+    },
+    {
+      "id": 167447,
+      "field": "Name",
+      "source": "An eye for an I, said the spider to the fly[译者注：放上原文,不敢失去分毫原意]",
+      "translation": "蜘蛛对苍蝇说：以眼还眼（译者注：保留原意）",
+      "context": "macOS visible Name repair"
+    },
+    {
+      "id": 184047,
+      "field": "Name",
+      "source": "DEBUG -杀一条午夜蠕虫",
+      "translation": "调试：击杀一条午夜蠕虫",
+      "context": "macOS visible Name repair"
+    },
+    {
+      "id": 176028,
+      "field": "Description",
+      "source": "\"<b>深海学院</b> 诚挚邀请<b>您</b>出席我们专属的极富教育性的晚会,  与阿加莎 特里高德女士,<b> 愉悦的女冒险家</b>, 同时也是收集令人毛骨悚然 神经紧张的真实恐怖故事的著名<i>讲述者</i>一同出席.\"\n\n在那请柬的背后潦草地写了一句话. \"亲爱的, 散场以后来找我. 机会不等人!\"(译者注:讲述者原文为raconteuse)",
+      "translation": "\"<b>深海学院</b> 诚挚邀请<b>您</b>出席我们专属的极富教育性的晚会,  与阿加莎 特里高德女士,<b> 愉悦的女冒险家</b>, 同时也是收集令人毛骨悚然 神经紧张的真实恐怖故事的著名<i>讲述者</i>一同出席.\"\n\n在那请柬的背后潦草地写了一句话. \"亲爱的, 散场以后来找我. 机会不等人!\"(译者注:讲述者原文为讲述者)",
+      "context": "macOS visible Description repair"
+    },
+    {
+      "id": 150380,
+      "field": "Description",
+      "source": "\"如果您如此慷慨地将这份小小的礼物送到我们在帕默斯顿山的朋友那里,那么他们会让我们知道这礼物已经送到.您回来的时候我们自然会支付您的开销. 炸弹 vwoyi-arge(你觉得他想说的应该是一路顺风），这是我那法国阿姨说过的向水手们祝福的话.\"\r\n\r\n[帕默斯顿山通常在伦敦东北方的某处.]",
+      "translation": "\"如果您如此慷慨地将这份小小的礼物送到我们在帕默斯顿山的朋友那里,那么他们会让我们知道这礼物已经送到.您回来的时候我们自然会支付您的开销. 炸弹 一路顺风(你觉得他想说的应该是一路顺风），这是我那法国阿姨说过的向水手们祝福的话.\"\r\n\r\n[帕默斯顿山通常在伦敦东北方的某处.]",
+      "context": "macOS visible Description repair"
+    },
+    {
+      "id": 240658,
+      "field": "Description",
+      "source": "钻孔和它的工作由一个Nerveless 信徒守护着.但他一心只想鼓励孩子们——主要是通过大声咒骂——而你却无人察觉的游了过去. \r\n\r\n一个很明显的破坏目标：所有孔的支撑都被一个巨大的别针固定在一起.把这个拿出来然后—好了!钻孔吱吱作响, 呻吟, 然后扣上.钻头在巨嘴的肉里弯曲和扭曲;水里充满了血雾.儿童和信徒逃到更高的地方.\r\n\r\n这些碎片是一团下沉和漂浮的部分, 它们在争夺自由.在这里逗留是危险的.唯一的庇护所是粗糙撕裂的嘴唇上的巨大伤口. \r\n\r\n血变得清澈, 露出了 大麻人。 ”我们终于见面了, 小姐—等一下.你是谁?\"",
+      "translation": "钻孔和它的工作由一个无感者 信徒守护着.但他一心只想鼓励孩子们——主要是通过大声咒骂——而你却无人察觉的游了过去. \r\n\r\n一个很明显的破坏目标：所有孔的支撑都被一个巨大的别针固定在一起.把这个拿出来然后—好了!钻孔吱吱作响, 呻吟, 然后扣上.钻头在巨嘴的肉里弯曲和扭曲;水里充满了血雾.儿童和信徒逃到更高的地方.\r\n\r\n这些碎片是一团下沉和漂浮的部分, 它们在争夺自由.在这里逗留是危险的.唯一的庇护所是粗糙撕裂的嘴唇上的巨大伤口. \r\n\r\n血变得清澈, 露出了 大麻人。 ”我们终于见面了, 小姐—等一下.你是谁?\"",
+      "context": "macOS visible Description repair"
+    },
+    {
+      "id": 177525,
+      "field": "Description",
+      "source": "\"我习----惯了,\" 他直接承认道, \"被用作---工具. 这就是你的机---械师要做的: 不用介---意---. 我欠an他的. 我的人民把他做---为储藏秘密的地方. 当那结束, 那会是一种解脱. 但是在那---之前, 我会继续保有那个秘密. 不过, 你的陪---伴让我很开---心. 这是给你的.\"\r\n\r\n他交给了你一小块深琥珀, 那摸起来很暖.",
+      "translation": "\"我习----惯了,\" 他直接承认道, \"被用作---工具. 这就是你的机---械师要做的: 不用介---意---. 我欠他的. 我的人民把他做---为储藏秘密的地方. 当那结束, 那会是一种解脱. 但是在那---之前, 我会继续保有那个秘密. 不过, 你的陪---伴让我很开---心. 这是给你的.\"\r\n\r\n他交给了你一小块深琥珀, 那摸起来很暖.",
+      "context": "macOS visible Description repair"
+    },
+    {
+      "id": 147413,
+      "field": "Description",
+      "source": "啊, <i>serpentus sirenesis</i>, 也就是俗称的女妖蛇, 这个坏蛋. 拟人的尾尖, 还有能发出诱人声音的音囊. 或许你把卵产在附近的礁石了, 不是吗? 如果我们能把这东西引开, 就可以去偷蛋了 -",
+      "translation": "啊, 蛇妖学名, 也就是俗称的女妖蛇, 这个坏蛋. 拟人的尾尖, 还有能发出诱人声音的音囊. 或许你把卵产在附近的礁石了, 不是吗? 如果我们能把这东西引开, 就可以去偷蛋了 -",
+      "context": "macOS visible Description repair"
+    },
+    {
+      "id": 146448,
+      "field": "Description",
+      "source": "你被人们誉为海泽智者.你的历险激励了整整一代新的船长用他们的生命去海泽中追逐自己的目标,在未知的黑色水域中对抗未知的恐惧.诗人和学者排着队要求和你进行会面. 你的秘书已经把晚餐预约到了一年之后.你现在站在伦敦社会的顶层.\r\n当然你的船员没有. 他们只是配角:只是平凡的人.不过尽管如此,你依然和他们保持联系,帮助他们解决经济上的问题.也许你现在会有种高处不胜寒的感觉 .\r\n\r\n\r\n\r\n译者：DrCloud Fadewalker Mr.Pasta\r\n\r\n修正：Fadewalker Delta67 Oxygenarian\r\n\r\n博学者：氧气学家 KostberaLili Fadewalker\r\n\r\n程序：DrCloud Delta67\r\n\r\n感谢您使用我们的模组。 \r\n\r\n[这位船长的生涯到此结束.]",
+      "translation": "你被人们誉为海泽智者.你的历险激励了整整一代新的船长用他们的生命去海泽中追逐自己的目标,在未知的黑色水域中对抗未知的恐惧.诗人和学者排着队要求和你进行会面. 你的秘书已经把晚餐预约到了一年之后.你现在站在伦敦社会的顶层.\r\n当然你的船员没有. 他们只是配角:只是平凡的人.不过尽管如此,你依然和他们保持联系,帮助他们解决经济上的问题.也许你现在会有种高处不胜寒的感觉 .\r\n\r\n\r\n\r\n译者：云行者 褪行者 帕斯塔先生\r\n\r\n修正：褪行者 三角六七 氧气学家\r\n\r\n博学者：氧气学家 科斯贝拉莉莉 褪行者\r\n\r\n程序：云行者 三角六七\r\n\r\n感谢您使用我们的模组。 \r\n\r\n[这位船长的生涯到此结束.]",
+      "context": "macOS visible Description repair"
+    },
+    {
+      "id": 146449,
+      "field": "Description",
+      "source": "细雨使得葬礼显得格外肃穆.地下选择用它悲伤而淅沥的雨装点这场葬礼.铁锹上闪光的雨滴, 棺木,牧师苍白的额头. 不会有太多伦敦人记住你的父亲,但是这个场面会让他们印象深刻! 是最后的安息! - 葬礼引来了许多人. 哀悼者们排着队和你握手.但当他们寒暄时,你听到的只有海泽的声音.\r\n\r\n葬礼结束后,你给你的仆人们放了一个晚上的假.现在房子空荡荡的,挂钟滴答滴答地响着.房梁轻轻地发出些响动.但你仍然能听见海泽的声音. \r\n\r\n\r\n\r\n译者：DrCloud Fadewalker Mr.Pasta\r\n\r\n修正：Fadewalker Delta67 Oxygenarian\r\n\r\n博学者：氧气学家 KostberaLili Fadewalker\r\n\r\n程序：DrCloud Delta67\r\n\r\n感谢您使用我们的模组。 \r\n\r\n[这名船长的生涯到此结束.]",
+      "translation": "细雨使得葬礼显得格外肃穆.地下选择用它悲伤而淅沥的雨装点这场葬礼.铁锹上闪光的雨滴, 棺木,牧师苍白的额头. 不会有太多伦敦人记住你的父亲,但是这个场面会让他们印象深刻! 是最后的安息! - 葬礼引来了许多人. 哀悼者们排着队和你握手.但当他们寒暄时,你听到的只有海泽的声音.\r\n\r\n葬礼结束后,你给你的仆人们放了一个晚上的假.现在房子空荡荡的,挂钟滴答滴答地响着.房梁轻轻地发出些响动.但你仍然能听见海泽的声音. \r\n\r\n\r\n\r\n译者：云行者 褪行者 帕斯塔先生\r\n\r\n修正：褪行者 三角六七 氧气学家\r\n\r\n博学者：氧气学家 科斯贝拉莉莉 褪行者\r\n\r\n程序：云行者 三角六七\r\n\r\n感谢您使用我们的模组。 \r\n\r\n[这名船长的生涯到此结束.]",
+      "context": "macOS visible Description repair"
+    },
+    {
+      "id": 144262,
+      "field": "Description",
+      "source": "这寂静可以像一座大教堂的重量带来的力量一样推进这船, 但是我们会将这歌声口口相传, 并且和东方,结合起来. 我们附近的海泽将会照亮远方: 绿色的森林,绿色的草, 绿色和金色. 山峰会在我们前方升起, 闪耀着光斑, 山脚隐藏在森林中. 迷雾会从海中升起.前方那片土地的海滩就像画中的月亮一样洁白无瑕.我们的船将在海滩上完好的停靠.她将永远不会回头.我将亲手握紧这沙子. 我将把目光指向那山峰耸立的地方, 他们轻快的动作与朦胧的身形,那我将去向的天空. 盐神正在微笑.\r\n\r\n译者：DrCloud Fadewalker Mr.Pasta\r\n\r\n修正：Fadewalker Delta67 Oxygenarian\r\n\r\n博学者：氧气学家 KostberaLili Fadewalker\r\n\r\n程序：DrCloud Delta67\r\n\r\n感谢您使用我们的模组。",
+      "translation": "这寂静可以像一座大教堂的重量带来的力量一样推进这船, 但是我们会将这歌声口口相传, 并且和东方,结合起来. 我们附近的海泽将会照亮远方: 绿色的森林,绿色的草, 绿色和金色. 山峰会在我们前方升起, 闪耀着光斑, 山脚隐藏在森林中. 迷雾会从海中升起.前方那片土地的海滩就像画中的月亮一样洁白无瑕.我们的船将在海滩上完好的停靠.她将永远不会回头.我将亲手握紧这沙子. 我将把目光指向那山峰耸立的地方, 他们轻快的动作与朦胧的身形,那我将去向的天空. 盐神正在微笑.\r\n\r\n译者：云行者 褪行者 帕斯塔先生\r\n\r\n修正：褪行者 三角六七 氧气学家\r\n\r\n博学者：氧气学家 科斯贝拉莉莉 褪行者\r\n\r\n程序：云行者 三角六七\r\n\r\n感谢您使用我们的模组。",
+      "context": "macOS visible Description repair"
+    }
+  ]
+}

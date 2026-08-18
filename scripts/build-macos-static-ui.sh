@@ -71,6 +71,18 @@ ADDON_PAYLOAD=$(find "$SCRATCH/payload" -type d -path '*/payload/data/addon/Sunl
 [[ -n "$ADDON_PAYLOAD" ]] || die "translation addon was not found in payload ZIP"
 cp -R "$ADDON_PAYLOAD" "$BUILD_ROOT/player-data/addon/"
 
+ADDON_EVENTS="$BUILD_ROOT/player-data/addon/Sunless_sea_CN_reborn/entities/events.json"
+OVERRIDE_FILE="$REPO_ROOT/localization/macos/events-name-overrides.json"
+OVERRIDE_APPLIER="$REPO_ROOT/scripts/apply-macos-localization-overrides.py"
+VISIBLE_ENGLISH_AUDIT="$REPO_ROOT/scripts/audit-macos-visible-english.py"
+[[ -f "$ADDON_EVENTS" ]] || die "staged events.json was not found"
+[[ -f "$OVERRIDE_FILE" ]] || die "macOS localization overlay was not found: $OVERRIDE_FILE"
+python3 "$OVERRIDE_APPLIER" \
+    --input "$ADDON_EVENTS" \
+    --overlay "$OVERRIDE_FILE" \
+    --output "$ADDON_EVENTS"
+python3 "$VISIBLE_ENGLISH_AUDIT" --events "$ADDON_EVENTS"
+
 printf 'build-root=%s\n' "$BUILD_ROOT"
 printf 'staging-managed=%s\n' "$STAGE_ROOT/Managed"
 printf 'player-data=%s\n' "$BUILD_ROOT/player-data"

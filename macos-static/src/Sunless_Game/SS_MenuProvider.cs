@@ -25,6 +25,14 @@ public class SS_MenuProvider
         {
             errorText = "导入失败，可继续游玩已存档或稍后再试一遍。";
         }
+        else if (errorText == "Cannot connect to the server to retrieve latest news.")
+        {
+            errorText = "无法连接服务器以获取最新消息。";
+        }
+        else if (errorText == "There was a problem connecting to the server")
+        {
+            errorText = "连接服务器时出现问题。";
+        }
     }
     //[HarmonyTranspiler]
     //[HarmonyPatch(nameof(MenuProvider.UpdateLocalData))]

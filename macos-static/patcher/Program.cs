@@ -8,6 +8,8 @@ internal static class Program
     private const string BootstrapNamespace = "SSTranslator";
     private const string BootstrapTypeName = "Bootstrap";
     private const string BootstrapMethodName = "Init";
+    private const string IntroTypeName = "IntroScript";
+    private const string IntroMethodName = "PlayEAWarning";
     private const string TargetTypeName = "TitleScreenInit";
     private const string TargetMethodName = "Start";
 
@@ -173,27 +175,34 @@ internal static class Program
         using var target = AssemblyDefinition.ReadAssembly(inputPath, readerParameters);
         using var translation = AssemblyDefinition.ReadAssembly(translationPath, new ReaderParameters { ReadSymbols = false });
 
-        var targetMethod = FindTarget(target.MainModule);
+        var introMethod = FindTarget(target.MainModule, IntroTypeName, IntroMethodName);
+        var titleMethod = FindTarget(target.MainModule, TargetTypeName, TargetMethodName);
         var bootstrapMethod = FindBootstrap(translation.MainModule);
         var importedBootstrap = target.MainModule.ImportReference(bootstrapMethod);
-        var existing = FindBootstrapCall(targetMethod, importedBootstrap);
-        var action = existing is null ? "injected" : "already-injected";
-        if (existing is null)
-        {
-            targetMethod.Body.GetILProcessor().InsertBefore(
-                targetMethod.Body.Instructions[0],
-                Instruction.Create(OpCodes.Call, importedBootstrap));
-        }
+        var introExisting = FindBootstrapCall(introMethod);
+        var titleExisting = FindBootstrapCall(titleMethod);
+        var introAction = introExisting is null ? "injected" : "already-injected";
+        var titleAction = titleExisting is null ? "injected" : "already-injected";
+        if (introExisting is null)
+            InjectBootstrap(introMethod, importedBootstrap);
+        if (titleExisting is null)
+            InjectBootstrap(titleMethod, importedBootstrap);
+        var action = introAction == "already-injected" && titleAction == "already-injected"
+            ? "already-injected"
+            : "injected";
 
         target.Write(outputPath);
-        Verify(outputPath, inputSha, action, targetMethod.FullName);
+        Verify(outputPath, inputSha, action);
         var outputSha = Sha256(outputPath);
         return string.Join(Environment.NewLine, new[]
         {
             $"input={inputPath}",
             $"input-sha256={inputSha}",
             $"input-size={new FileInfo(inputPath).Length}",
-            $"target={targetMethod.FullName}",
+            $"target-intro={introMethod.FullName}",
+            $"bootstrap-intro-action={introAction}",
+            $"target-title={titleMethod.FullName}",
+            $"bootstrap-title-action={titleAction}",
             $"bootstrap={bootstrapMethod.FullName}",
             $"action={action}",
             $"output={outputPath}",
@@ -203,16 +212,16 @@ internal static class Program
         });
     }
 
-    private static MethodDefinition FindTarget(ModuleDefinition module)
+    private static MethodDefinition FindTarget(ModuleDefinition module, string typeName, string methodName)
     {
         var candidates = AllTypes(module.Types)
-            .Where(type => type.Name == TargetTypeName)
-            .SelectMany(type => type.Methods.Where(method => method.Name == TargetMethodName))
+            .Where(type => type.Name == typeName)
+            .SelectMany(type => type.Methods.Where(method => method.Name == methodName))
             .ToList();
 
         if (candidates.Count != 1)
             throw new InvalidOperationException(
-                $"expected exactly one {TargetTypeName}.{TargetMethodName}, found {candidates.Count}: " +
+                $"expected exactly one {typeName}.{methodName}, found {candidates.Count}: " +
                 string.Join(", ", candidates.Select(candidate => candidate.FullName)));
 
         var method = candidates[0];
@@ -238,7 +247,7 @@ internal static class Program
         return method;
     }
 
-    private static MethodReference? FindBootstrapCall(MethodDefinition target, MethodReference expected)
+    private static MethodReference? FindBootstrapCall(MethodDefinition target)
     {
         return target.Body.Instructions
             .Where(instruction => instruction.OpCode == OpCodes.Call || instruction.OpCode == OpCodes.Callvirt)
@@ -248,22 +257,35 @@ internal static class Program
                 method.DeclaringType.FullName == $"{BootstrapNamespace}.{BootstrapTypeName}");
     }
 
-    private static void Verify(string path, string inputSha, string action, string targetName)
+    private static void InjectBootstrap(MethodDefinition target, MethodReference bootstrap)
+    {
+        target.Body.GetILProcessor().InsertBefore(
+            target.Body.Instructions[0],
+            Instruction.Create(OpCodes.Call, bootstrap));
+    }
+
+    private static void Verify(string path, string inputSha, string action)
     {
         using var check = AssemblyDefinition.ReadAssembly(path, new ReaderParameters { ReadSymbols = false });
-        var target = FindTarget(check.MainModule);
+        VerifyTarget(check.MainModule, IntroTypeName, IntroMethodName);
+        VerifyTarget(check.MainModule, TargetTypeName, TargetMethodName);
+
+        // A repeat run may legitimately be byte-identical; the caller already
+        // enforces that input and output are different paths.
+        _ = inputSha;
+        _ = action;
+    }
+
+    private static void VerifyTarget(ModuleDefinition module, string typeName, string methodName)
+    {
+        var target = FindTarget(module, typeName, methodName);
         var calls = target.Body.Instructions.Count(instruction =>
             (instruction.OpCode == OpCodes.Call || instruction.OpCode == OpCodes.Callvirt) &&
             instruction.Operand is MethodReference method &&
             method.Name == BootstrapMethodName &&
             method.DeclaringType.FullName == $"{BootstrapNamespace}.{BootstrapTypeName}");
         if (calls != 1)
-            throw new InvalidOperationException($"verification expected exactly one Bootstrap.Init call, found {calls}");
-
-        // A repeat run may legitimately be byte-identical; the caller already
-        // enforces that input and output are different paths.
-        _ = inputSha;
-        _ = targetName;
+            throw new InvalidOperationException($"verification expected exactly one Bootstrap.Init call in {typeName}.{methodName}, found {calls}");
     }
 
     private static IEnumerable<TypeDefinition> AllTypes(IEnumerable<TypeDefinition> types)

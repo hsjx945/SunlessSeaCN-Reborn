@@ -20,7 +20,9 @@ public class SS_CharacterRepository
         {
             ["Restoring fallback save file"] = "正在恢复备用存档文件",
             ["The save file \""] = "存档文件\"",
-            [".json\" appears to be corrupt or invalid, however the fallback save file was OK and has been restored."] = ".json\"好像已经损坏或不可用，还好备用存档文件没事现在已经成功恢复。"
+            [".json\" appears to be corrupt or invalid, however the fallback save file was OK and has been restored."] = ".json\"好像已经损坏或不可用，还好备用存档文件没事现在已经成功恢复。",
+            [" and its fallback appear to be corrupt or invalid. Please select a different save file to load."] = "及其备用文件似乎都已损坏或无效。请选择其他存档载入。",
+            ["You must choose a name for your save file."] = "你必须为存档选择一个名称。"
         };
         SS_Utility.ILReplacer(instructions, trans);
         return instructions;

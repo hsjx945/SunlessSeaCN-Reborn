@@ -3,12 +3,62 @@ using Sunless.Game.Import;
 using Sunless.Game.UI.Components;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
+using System.Reflection.Emit;
+using Sunless.Game.ApplicationProviders;
+using UnityEngine;
 
 namespace SSTranslator.Sunless_Game;
 
 [HarmonyPatch(typeof(Importer))]
 public class SS_Importer
 {
+    [HarmonyTranspiler]
+    [HarmonyPatch(nameof(Importer.CheckIfNewContent))]
+    public static IEnumerable<CodeInstruction> SSPatch_CheckIfNewContent(IEnumerable<CodeInstruction> instructions)
+    {
+        var minValue = AccessTools.Field(typeof(DateTime), nameof(DateTime.MinValue));
+        var baseline = AccessTools.Method(typeof(SS_Importer), nameof(GetInitialContentBaseline));
+        var patched = false;
+        var output = new List<CodeInstruction>();
+
+        foreach (var instruction in instructions)
+        {
+            if (!patched && instruction.opcode == OpCodes.Ldsfld && Equals(instruction.operand, minValue))
+            {
+                output.Add(new CodeInstruction(OpCodes.Call, baseline));
+                patched = true;
+            }
+            else
+            {
+                output.Add(instruction);
+            }
+        }
+
+        if (!patched)
+            Debug.LogWarning("[SSTranslator] Importer.CheckIfNewContent baseline hook was not found; preserving original logic.");
+        return output;
+    }
+
+    internal static DateTime GetInitialContentBaseline()
+    {
+        const string gameVersionKey = "GameVersion";
+        if (PlayerPrefs.HasKey(gameVersionKey))
+            return DateTime.MinValue;
+
+        if (SS_VersionLogic.TryGetBundledBaseline(
+                false,
+                GameProvider.CONTENT_VERSION_NUMBER,
+                out var baseline))
+        {
+            Debug.Log("[SSTranslator] GameVersion is missing; using bundled content baseline " + baseline.ToString("yyyyMMddHHmm", CultureInfo.InvariantCulture) + ".");
+            return baseline;
+        }
+
+        Debug.LogWarning("[SSTranslator] Bundled content baseline could not be parsed; preserving original DateTime.MinValue behavior.");
+        return DateTime.MinValue;
+    }
+
     [HarmonyTranspiler]
     [HarmonyPatch(nameof(Importer.BeginImport), typeof(IProgressBar), typeof(Action), typeof(Action))]
     public static IEnumerable<CodeInstruction> SSPatch_BeginImport(IEnumerable<CodeInstruction> instructions)

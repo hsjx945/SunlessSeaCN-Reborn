@@ -195,7 +195,27 @@ public static class SS_Utility
             Texture2D newTexture = GetImageTexture2D(filename);
             if (newTexture != null)
             {
-                Sprite mySprite = Sprite.Create(newTexture, oldSprite.rect, new Vector2(oldSprite.pivot.x / oldSprite.rect.width, oldSprite.pivot.y / oldSprite.rect.height), oldSprite.pixelsPerUnit, 0, SpriteMeshType.FullRect, oldSprite.border);
+                var oldRect = oldSprite.rect;
+                var sourceWidth = Mathf.Max(1f, oldRect.width);
+                var sourceHeight = Mathf.Max(1f, oldRect.height);
+                var pivot = new Vector2(
+                    Mathf.Clamp01(oldSprite.pivot.x / sourceWidth),
+                    Mathf.Clamp01(oldSprite.pivot.y / sourceHeight));
+                var scaleX = newTexture.width / sourceWidth;
+                var scaleY = newTexture.height / sourceHeight;
+                var border = oldSprite.border;
+                var left = Mathf.Clamp(border.x * scaleX, 0, newTexture.width);
+                var right = Mathf.Clamp(border.z * scaleX, 0, newTexture.width - left);
+                var bottom = Mathf.Clamp(border.y * scaleY, 0, newTexture.height);
+                var top = Mathf.Clamp(border.w * scaleY, 0, newTexture.height - bottom);
+                Sprite mySprite = Sprite.Create(
+                    newTexture,
+                    new Rect(0, 0, newTexture.width, newTexture.height),
+                    pivot,
+                    Mathf.Max(1f, oldSprite.pixelsPerUnit),
+                    0,
+                    SpriteMeshType.FullRect,
+                    new Vector4(left, bottom, right, top));
                 return mySprite;
             }
             else

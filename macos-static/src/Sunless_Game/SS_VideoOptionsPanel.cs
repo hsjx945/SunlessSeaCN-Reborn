@@ -9,6 +9,18 @@ namespace SSTranslator.Sunless_Game;
 [HarmonyPatch(typeof(VideoOptionsPanel))]
 public class SS_VideoOptionsPanel
 {
+    [HarmonyTranspiler]
+    [HarmonyPatch("WarnAboutResolution")]
+    public static IEnumerable<CodeInstruction> SSPatch_WarnAboutResolution(IEnumerable<CodeInstruction> instructions)
+    {
+        var translations = new Dictionary<string, string>()
+        {
+            ["Warning"] = "警告",
+            ["The maximum recommended resolution is 1920x1080, you may experience issues above this size."] = "建议最高分辨率为 1920×1080；使用更高分辨率时可能出现显示问题。"
+        };
+        return SS_Utility.ILReplacer(instructions, translations);
+    }
+
     [HarmonyPostfix]
     [HarmonyPatch(MethodType.Constructor, typeof(GameObject), typeof(bool))]
     public static void SSPatch_VideoOptionsPanel(GameObject parent)

@@ -5,13 +5,14 @@ ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 ZIP="$ROOT/dist/SunlessSeaCN-macOS-v6.0.5.zip"
 PACKAGE="$ROOT/dist/SunlessSeaCN-macOS-v6.0.5"
 ORIGINAL_SHA256="b7d5df522b8ae7c1ee4913b283586fc4d823f735159bf00753f42ce4a86474f0"
-PATCHED_SHA256="80076c8ce27f5cd4121afeadf4e4ba7a7e0e266afb06b10cc01e501637677042"
+PATCHED_SHA256="4ecc41ee6112fb9fc350a1662550fc843662861c61d6a9d80a182e0dad32bf6d"
 
 die() { printf 'test_macos_package: %s\n' "$1" >&2; exit 1; }
 sha256() { shasum -a 256 "$1" | awk '{print $1}'; }
 
 [[ -f "$ZIP" ]] || die "missing ZIP; run scripts/build-macos-v605.sh"
 unzip -t "$ZIP" >/dev/null
+python3 "$ROOT/scripts/audit-macos-visible-english.py" --zip "$ZIP" >/dev/null || die "ZIP payload contains visible English event text"
 zip_entries="$(unzip -Z1 "$ZIP")"
 grep -q '^SunlessSeaCN-macOS-v6.0.5/payload/game/Sunless.Game.bsdiff$' <<< "$zip_entries"
 if grep -Eq '/Sunless\.Game(\.original)?\.dll$' <<< "$zip_entries"; then

@@ -1,0 +1,62 @@
+Mono path[0] = '/Users/tiny/Library/Application Support/Steam/steamapps/common/SunlessSea/Sunless Sea.app/Contents/Resources/Data/Managed'
+Mono config path = '/Users/tiny/Library/Application Support/Steam/steamapps/common/SunlessSea/Sunless Sea.app/Contents/MonoBleedingEdge/etc'
+Input System module state changed to: Initialized.
+[Physics::Module] Initialized fallback backend.
+[Physics::Module] Id: 0xdecafbad
+Plugins: Couldn't open /Users/tiny/Library/Application Support/Steam/steamapps/common/SunlessSea/Sunless Sea.app/Contents/PlugIns/libGalaxyCSharpGlue.dylib, error: dlopen(/Users/tiny/Library/Application Support/Steam/steamapps/common/SunlessSea/Sunless Sea.app/Contents/PlugIns/libGalaxyCSharpGlue.dylib, 0x0002): Library not loaded: @rpath/libGalaxy.dylib
+  Referenced from: <8CE2902C-E743-33E2-A459-A30EEEEC6688> /Users/tiny/Library/Application Support/Steam/steamapps/common/SunlessSea/Sunless Sea.app/Contents/PlugIns/libGalaxyCSharpGlue.dylib
+  Reason: tried: '/usr/local/lib/libGalaxy.dylib' (no such file), '/usr/lib/libGalaxy.dylib' (no such file, not in dyld cache)
+Plugins: Couldn't open /Users/tiny/Library/Application Support/Steam/steamapps/common/SunlessSea/Sunless Sea.app/Contents/PlugIns/libGalaxyCSharpGlue.dylib, error: dlopen(/Users/tiny/Library/Application Support/Steam/steamapps/common/SunlessSea/Sunless Sea.app/Contents/PlugIns/libGalaxyCSharpGlue.dylib, 0x0002): Library not loaded: @rpath/libGalaxy.dylib
+  Referenced from: <8CE2902C-E743-33E2-A459-A30EEEEC6688> /Users/tiny/Library/Application Support/Steam/steamapps/common/SunlessSea/Sunless Sea.app/Contents/PlugIns/libGalaxyCSharpGlue.dylib
+  Reason: tried: '/usr/local/lib/libGalaxy.dylib' (no such file), '/usr/lib/libGalaxy.dylib' (no such file, not in dyld cache)
+Initialize engine version: 6000.3.2f1 (a9779f353c9b)
+[Subsystems] Discovering subsystems at path /Users/tiny/Library/Application Support/Steam/steamapps/common/SunlessSea/Sunless Sea.app/Contents/Resources/Data/UnitySubsystems
+GfxDevice: creating device client; kGfxThreadingModeThreaded
+ preferred device: Apple M3 Max (high power)
+Metal devices available: 1
+0: Apple M3 Max (high power)
+Using device Apple M3 Max (high power)
+Initializing Metal device caps: Apple M3 Max
+Mac GPU Family: 2
+Apple GPU Family: 9
+MSL Version: 3.0
+Has Float MSAA: 1
+Has Float Filtering: 1
+ReadWrite Texture Tier: 2
+Begin MonoManager ReloadAssembly
+- Loaded All Assemblies, in  0.101 seconds
+- Finished resetting the current domain, in  0.001 seconds
+[Physics::Module] Selected backend.
+[Physics::Module] Name: PhysX
+[Physics::Module] Id: 0xf2b8ea05
+[Physics::Module] SDK Version: 4.1.2
+[Physics::Module] Integration Version: 1.0.0
+[Physics::Module] Threading Mode: Multi-Threaded
+Metal RecreateSurface[0xcb4905b00]: surface size 3456x2168
+UnloadTime: 0.459000 ms
+[EpicOnlineServices] Awake
+[EpicOnlineServices] Initialize
+[EpicOnlineServices] Initialize: ShouldDestroy == true. Destroying
+GOG::Awake()
+GOG::Initialize()
+[GOG] Bailing out of initialization early because we were compiled without GOG_ENABLED
+[SSTranslator] EAWarning localized after hierarchy became available.
+[SSTranslator] ILReplacer String 'Content is up to date' not found for replacement.
+[SSTranslator] ILReplacer String 'Cannot connect to the server to retrieve latest news.' not found for replacement.
+[SSTranslator] content probe 143942: 一名熟练的船员
+[SSTranslator] content probe 143942: 一名熟练的船员
+[SSTranslator] macOS static bootstrap initialized; Harmony patches applied.
+[SSTranslator] EAWarning localized after hierarchy became available.
+Unloading 6 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 7.868458 ms
+Starting Sunless Sea: Zubmariner V2.3.0.22
+[SSTranslator] TitleScreenInit: title image 0 localized with texture 561x110.
+[SSTranslator] TitleScreenInit: title image 1 localized with texture 561x110.
+[SSTranslator] TitleScreenInit: localized title texts version=1, support=1, copyright=1.
+Unloading 24 unused Assets to reduce memory usage. Loaded Objects now: 3077.
+Total: 10.751750 ms (FindLiveObjects: 0.052875 ms CreateObjectMapping: 0.033250 ms MarkObjects: 10.613667 ms  DeleteObjects: 0.051750 ms)
+
+[SSTranslator] GameVersion is missing; using bundled content baseline 201710261506.
+[SSTranslator] GameVersion is missing; using bundled content baseline 201710261506.
+We got the first ad image!
+Curl error 35: Cert verify failed. Certificate could not be verified (either omitted or unsupported). UnityTls error code: 7
