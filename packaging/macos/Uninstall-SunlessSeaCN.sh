@@ -7,8 +7,8 @@ LOCK_DIR="$GAME_ROOT/.sunlessseacn-install.lock"
 
 die() { printf 'Sunless Sea 中文补丁: %s\n' "$1" >&2; exit 2; }
 sha256() { shasum -a 256 "$1" | awk '{print $1}'; }
-[[ -f "$MANIFEST" ]] || die "未找到 v6.0.5 安装清单: $MANIFEST"
-head -n 1 "$MANIFEST" | grep -q '^SUNLESSSEACN_MANIFEST=2$' || die "不是 v6.0.5 安装清单"
+[[ -f "$MANIFEST" ]] || die "未找到 Sunless Sea 中文补丁安装清单: $MANIFEST"
+head -n 1 "$MANIFEST" | grep -q '^SUNLESSSEACN_MANIFEST=2$' || die "不是受支持的 Sunless Sea 中文补丁安装清单"
 if ! mkdir "$LOCK_DIR" 2>/dev/null; then die "已有另一个安装或卸载正在进行: $LOCK_DIR"; fi
 trap 'rmdir "$LOCK_DIR" 2>/dev/null || true' EXIT
 

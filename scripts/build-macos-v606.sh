@@ -4,14 +4,14 @@ set -euo pipefail
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 REPO_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
 GAME_MANAGED="${SUNLESS_SEA_MANAGED:-/Users/tiny/Library/Application Support/Steam/steamapps/common/SunlessSea/Sunless Sea.app/Contents/Resources/Data/Managed}"
-ORIGINAL_SHA256="b7d5df522b8ae7c1ee4913b283586fc4d823f735159bf00753f42ce4a86474f0"
-PATCHED_SHA256="4ecc41ee6112fb9fc350a1662550fc843662861c61d6a9d80a182e0dad32bf6d"
+ORIGINAL_SHA256="e40189302338b9bdc879b8474107c5e08d66a706c6a0dcd89250106066d0fdf4"
+PATCHED_SHA256="8668468fda20cb1eb700e348f2f2c623a22178a8ac1e33106d5dcd272c37b246"
 BSdiff_BIN="${BSDIFF_BIN:-$(command -v bsdiff || true)}"
 BUILD_ROOT="$REPO_ROOT/build/macos-static"
 DELTA_ROOT="$BUILD_ROOT/delta"
 OUTPUT_ROOT="${SUNLESS_SEA_CN_OUTPUT_ROOT:-$(cd "$REPO_ROOT/../../outputs" && pwd)}"
 
-die() { printf 'build-macos-v605: %s\n' "$1" >&2; exit 2; }
+die() { printf 'build-macos-v606: %s\n' "$1" >&2; exit 2; }
 sha256() { shasum -a 256 "$1" | awk '{print $1}'; }
 
 [[ -x /usr/bin/bspatch ]] || die "/usr/bin/bspatch not found"
@@ -35,10 +35,10 @@ cmp -s "$TARGET" "$ROUNDTRIP" || die "bsdiff/bspatch roundtrip mismatch"
 rm -f "$ROUNDTRIP"
 
 python3 "$REPO_ROOT/build_packages.py" --macos-only
-ZIP="$REPO_ROOT/dist/SunlessSeaCN-macOS-v6.0.5.zip"
+ZIP="$REPO_ROOT/dist/SunlessSeaCN-macOS-v6.0.6.zip"
 [[ -f "$ZIP" ]] || die "macOS ZIP was not generated"
 mkdir -p "$OUTPUT_ROOT"
-cp "$ZIP" "$OUTPUT_ROOT/SunlessSeaCN-macOS-v6.0.5.zip"
-printf 'zip=%s\n' "$OUTPUT_ROOT/SunlessSeaCN-macOS-v6.0.5.zip"
-printf 'size=%s\n' "$(stat -f %z "$OUTPUT_ROOT/SunlessSeaCN-macOS-v6.0.5.zip")"
-printf 'sha256=%s\n' "$(sha256 "$OUTPUT_ROOT/SunlessSeaCN-macOS-v6.0.5.zip")"
+cp "$ZIP" "$OUTPUT_ROOT/SunlessSeaCN-macOS-v6.0.6.zip"
+printf 'zip=%s\n' "$OUTPUT_ROOT/SunlessSeaCN-macOS-v6.0.6.zip"
+printf 'size=%s\n' "$(stat -f %z "$OUTPUT_ROOT/SunlessSeaCN-macOS-v6.0.6.zip")"
+printf 'sha256=%s\n' "$(sha256 "$OUTPUT_ROOT/SunlessSeaCN-macOS-v6.0.6.zip")"

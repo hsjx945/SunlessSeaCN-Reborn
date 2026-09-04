@@ -2,19 +2,19 @@
 set -euo pipefail
 
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
-ZIP="$ROOT/dist/SunlessSeaCN-macOS-v6.0.5.zip"
-PACKAGE="$ROOT/dist/SunlessSeaCN-macOS-v6.0.5"
-ORIGINAL_SHA256="b7d5df522b8ae7c1ee4913b283586fc4d823f735159bf00753f42ce4a86474f0"
-PATCHED_SHA256="4ecc41ee6112fb9fc350a1662550fc843662861c61d6a9d80a182e0dad32bf6d"
+ZIP="$ROOT/dist/SunlessSeaCN-macOS-v6.0.6.zip"
+PACKAGE="$ROOT/dist/SunlessSeaCN-macOS-v6.0.6"
+ORIGINAL_SHA256="e40189302338b9bdc879b8474107c5e08d66a706c6a0dcd89250106066d0fdf4"
+PATCHED_SHA256="8668468fda20cb1eb700e348f2f2c623a22178a8ac1e33106d5dcd272c37b246"
 
 die() { printf 'test_macos_package: %s\n' "$1" >&2; exit 1; }
 sha256() { shasum -a 256 "$1" | awk '{print $1}'; }
 
-[[ -f "$ZIP" ]] || die "missing ZIP; run scripts/build-macos-v605.sh"
+[[ -f "$ZIP" ]] || die "missing ZIP; run scripts/build-macos-v606.sh"
 unzip -t "$ZIP" >/dev/null
 python3 "$ROOT/scripts/audit-macos-visible-english.py" --zip "$ZIP" >/dev/null || die "ZIP payload contains visible English event text"
 zip_entries="$(unzip -Z1 "$ZIP")"
-grep -q '^SunlessSeaCN-macOS-v6.0.5/payload/game/Sunless.Game.bsdiff$' <<< "$zip_entries"
+grep -q '^SunlessSeaCN-macOS-v6.0.6/payload/game/Sunless.Game.bsdiff$' <<< "$zip_entries"
 if grep -Eq '/Sunless\.Game(\.original)?\.dll$' <<< "$zip_entries"; then
   die "ZIP contains a complete game DLL"
 fi
@@ -30,9 +30,9 @@ TEST_ROOT="$(mktemp -d "${TMPDIR:-/tmp}/sunlesssea-package.XXXXXX")"
 trap 'rm -rf "$TEST_ROOT"' EXIT
 unzip -q "$ZIP" -d "$TEST_ROOT/unpacked"
 for name in Install-SunlessSeaCN.sh Install-And-Start-SunlessSeaCN.sh Uninstall-SunlessSeaCN.sh Install-SunlessSeaCN.command Install-And-Start-SunlessSeaCN.command Uninstall-SunlessSeaCN.command; do
-  mode="$(stat -f '%Lp' "$TEST_ROOT/unpacked/SunlessSeaCN-macOS-v6.0.5/$name")"
+  mode="$(stat -f '%Lp' "$TEST_ROOT/unpacked/SunlessSeaCN-macOS-v6.0.6/$name")"
   [[ "$mode" == "755" ]] || die "$name mode is $mode, expected 755"
-  /bin/bash -n "$TEST_ROOT/unpacked/SunlessSeaCN-macOS-v6.0.5/$name"
+  /bin/bash -n "$TEST_ROOT/unpacked/SunlessSeaCN-macOS-v6.0.6/$name"
 done
 
 # Build a small signed app-shaped sandbox around the real input DLL. No Steam
@@ -49,7 +49,7 @@ codesign --force --sign - "$APP" >/dev/null
 mkdir -p "$TEST_ROOT/home/Library/Application Support/unity.Failbetter Games.Sunless Sea/saves"
 printf 'legacy\n' > "$TEST_ROOT/home/Library/Application Support/unity.Failbetter Games.Sunless Sea/saves/sentinel"
 
-PKG="$TEST_ROOT/unpacked/SunlessSeaCN-macOS-v6.0.5"
+PKG="$TEST_ROOT/unpacked/SunlessSeaCN-macOS-v6.0.6"
 SUNLESS_SEA_GAME_ROOT="$GAME_ROOT" HOME="$TEST_ROOT/home" NONINTERACTIVE=1 /bin/bash "$PKG/Install-SunlessSeaCN.sh"
 [[ "$(sha256 "$MANAGED/Sunless.Game.dll")" == "$PATCHED_SHA256" ]] || die "patched hash mismatch after install"
 [[ -f "$TEST_ROOT/home/Library/Application Support/com.failbettergames.sunlesssea/addon/Sunless_sea_CN_reborn/entities/events.json" ]] || die "addon was not installed to Unity 6 root"
@@ -58,6 +58,15 @@ SUNLESS_SEA_GAME_ROOT="$GAME_ROOT" HOME="$TEST_ROOT/home" NONINTERACTIVE=1 /bin/
 # Reinstall is idempotent and must leave exactly one manifest.
 SUNLESS_SEA_GAME_ROOT="$GAME_ROOT" HOME="$TEST_ROOT/home" NONINTERACTIVE=1 /bin/bash "$PKG/Install-SunlessSeaCN.sh"
 [[ "$(sha256 "$MANAGED/Sunless.Game.dll")" == "$PATCHED_SHA256" ]] || die "patched hash mismatch after reinstall"
+
+# Steam may replace signed game-owned files while leaving the old manifest and
+# add-on files behind. Reinstall must preserve the new original DLL, migrate
+# the stale manifest, and then apply the current patch.
+cp "$ROOT/build/macos-static/staging/Managed/Sunless.Game.original.dll" "$MANAGED/Sunless.Game.dll"
+sed -i '' 's/^PACKAGE_VERSION=6\.0\.6$/PACKAGE_VERSION=6.0.5/' "$GAME_ROOT/.sunlessseacn-install-manifest"
+SUNLESS_SEA_GAME_ROOT="$GAME_ROOT" HOME="$TEST_ROOT/home" NONINTERACTIVE=1 /bin/bash "$PKG/Install-SunlessSeaCN.sh"
+[[ "$(sha256 "$MANAGED/Sunless.Game.dll")" == "$PATCHED_SHA256" ]] || die "Steam-update manifest migration did not install the current patch"
+grep -q '^PACKAGE_VERSION=6.0.6$' "$GAME_ROOT/.sunlessseacn-install-manifest" || die "Steam-update manifest migration kept the old package version"
 
 SUNLESS_SEA_GAME_ROOT="$GAME_ROOT" HOME="$TEST_ROOT/home" /bin/bash "$PKG/Uninstall-SunlessSeaCN.sh"
 [[ "$(sha256 "$MANAGED/Sunless.Game.dll")" == "$ORIGINAL_SHA256" ]] || die "original hash was not restored"

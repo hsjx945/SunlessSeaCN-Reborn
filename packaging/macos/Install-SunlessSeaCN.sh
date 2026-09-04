@@ -4,9 +4,11 @@ set -euo pipefail
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 PAYLOAD_GAME="$SCRIPT_DIR/payload/game"
 PAYLOAD_DATA="$SCRIPT_DIR/payload/data"
-PACKAGE_VERSION="6.0.5"
-ORIGINAL_GAME_SHA256="b7d5df522b8ae7c1ee4913b283586fc4d823f735159bf00753f42ce4a86474f0"
-PATCHED_GAME_SHA256="4ecc41ee6112fb9fc350a1662550fc843662861c61d6a9d80a182e0dad32bf6d"
+PACKAGE_VERSION="6.0.6"
+ORIGINAL_GAME_SHA256="e40189302338b9bdc879b8474107c5e08d66a706c6a0dcd89250106066d0fdf4"
+PATCHED_GAME_SHA256="8668468fda20cb1eb700e348f2f2c623a22178a8ac1e33106d5dcd272c37b246"
+ORIGINAL_EXEC_SHA256="ba8cdadbe201c26c3ff81817b84fbe34004b0184dec9cc3b209835fc9867328b"
+ORIGINAL_CODE_RESOURCES_SHA256="1805eed7a4e9d15ac4ad04381be05be26bb90476cd49e509cb62e1182a8836e5"
 
 GAME_ROOT=""
 DATA_ROOT=""
@@ -26,6 +28,23 @@ die() {
 
 sha256() {
   shasum -a 256 "$1" | awk '{print $1}'
+}
+
+is_current_steam_file() {
+  local rel="$1"
+  local actual="$2"
+  case "$rel" in
+    "Sunless Sea.app/Contents/Resources/Data/Managed/Sunless.Game.dll")
+      [[ "$actual" == "$ORIGINAL_GAME_SHA256" ]]
+      ;;
+    "Sunless Sea.app/Contents/MacOS/Sunless Sea")
+      [[ "$actual" == "$ORIGINAL_EXEC_SHA256" ]]
+      ;;
+    "Sunless Sea.app/Contents/_CodeSignature/CodeResources")
+      [[ "$actual" == "$ORIGINAL_CODE_RESOURCES_SHA256" ]]
+      ;;
+    *) return 1 ;;
+  esac
 }
 
 find_game_root() {
@@ -183,18 +202,34 @@ remove_previous_install() {
   local dest
   local actual
   local previous_backup
+  local previous_version
+  local current_game_hash
+  local steam_update=0
   previous_game="$GAME_ROOT"
   previous_data="$(awk -F= '$1=="DATA_ROOT"{print substr($0,index($0,"=")+1)}' "$MANIFEST")"
   previous_backup="$(awk -F= '$1=="BACKUP_ROOT"{print substr($0,index($0,"=")+1)}' "$MANIFEST")"
+  previous_version="$(awk -F= '$1=="PACKAGE_VERSION"{print substr($0,index($0,"=")+1)}' "$MANIFEST")"
   [[ -n "$previous_data" && -n "$previous_backup" ]] || die "安装清单不完整，请先用对应版本卸载或恢复 Steam 文件"
+  current_game_hash="$(sha256 "$APP/Contents/Resources/Data/Managed/Sunless.Game.dll")"
+  if [[ "$current_game_hash" == "$ORIGINAL_GAME_SHA256" ]]; then
+    steam_update=1
+    printf '检测到 Steam 已更新游戏；将保留新版游戏文件并清理旧补丁。\n'
+  fi
   while IFS=$'\t' read -r marker scope rel expected had backup; do
     [[ "$marker" == "RECORD" ]] || continue
     root="$previous_game"
     if [[ "$scope" == "data" ]]; then root="$previous_data"; fi
     dest="$root/$rel"
-    if [[ -e "$dest" ]]; then
-      actual="$(sha256 "$dest")"
-      [[ "$actual" == "$expected" ]] || die "检测到用户修改，未自动覆盖: $dest"
+    if [[ ! -e "$dest" ]]; then
+      if [[ "$steam_update" == "1" && "$scope" == "game" && "$had" == "0" ]]; then continue; fi
+      die "检测到已删除的安装文件，未自动覆盖: $dest"
+    fi
+    actual="$(sha256 "$dest")"
+    if [[ "$actual" != "$expected" ]]; then
+      if [[ "$steam_update" == "1" && "$scope" == "game" ]] && is_current_steam_file "$rel" "$actual"; then
+        continue
+      fi
+      die "检测到用户修改，未自动覆盖: $dest"
     fi
   done < "$MANIFEST"
   while IFS=$'\t' read -r marker scope rel expected had backup; do
@@ -202,6 +237,10 @@ remove_previous_install() {
     root="$previous_game"
     if [[ "$scope" == "data" ]]; then root="$previous_data"; fi
     dest="$root/$rel"
+    if [[ "$steam_update" == "1" && "$scope" == "game" && -e "$dest" ]]; then
+      actual="$(sha256 "$dest")"
+      if is_current_steam_file "$rel" "$actual"; then continue; fi
+    fi
     rm -f "$dest"
     if [[ "$had" == "1" && -f "$backup" ]]; then
       mkdir -p "$(dirname "$dest")"
@@ -209,7 +248,7 @@ remove_previous_install() {
     fi
   done < "$MANIFEST"
   rm -f "$MANIFEST"
-  printf '已清理上一份 v6.0.5 安装，备份仍保留在: %s\n' "$previous_backup"
+  printf '已清理上一份 v%s 安装，备份仍保留在: %s\n' "${previous_version:-未知}" "$previous_backup"
 }
 
 install_package() {

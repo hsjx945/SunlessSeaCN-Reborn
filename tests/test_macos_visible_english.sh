@@ -22,7 +22,7 @@ python3 "$APPLIER" --input "$TEST_ROOT/source-events.json" --overlay "$OVERLAY" 
 python3 "$AUDIT" --events "$TEST_ROOT/events.json" >/dev/null || die "translated event graph still contains visible English"
 
 # The final ZIP is the actual delivery surface; audit its payload when present.
-ZIP="$ROOT/dist/SunlessSeaCN-macOS-v6.0.5.zip"
+ZIP="$ROOT/dist/SunlessSeaCN-macOS-v6.0.6.zip"
 if [[ -f "$ZIP" ]]; then
   python3 "$AUDIT" --zip "$ZIP" >/dev/null || die "final ZIP payload contains visible English"
 fi

@@ -2,14 +2,14 @@
 
 **Sunless Sea 中文汉化、Chinese localization、BepInEx 文本与 UI 补丁**。本仓库为《Sunless Sea》（中文常译：**无光之海**）制作可安装的社区中文兼容包，包含完整文本 addon、中文 UI 插件，以及 Windows/macOS 一键安装与卸载脚本。
 
-当前兼容包版本：Windows **6.0.4**、macOS **6.0.5**。项目不包含《Sunless Sea》游戏本体或游戏原始资源，使用前请先通过 Steam 等合法渠道拥有并安装游戏。
+当前兼容包版本：Windows **6.0.4**、macOS **6.0.6**。项目不包含《Sunless Sea》游戏本体或游戏原始资源，使用前请先通过 Steam 等合法渠道拥有并安装游戏。
 
 ## 快速下载
 
 从 [GitHub Releases](https://github.com/hsjx945/SunlessSeaCN-Reborn/releases/latest) 下载对应平台的压缩包：
 
 - `SunlessSeaCN-Windows-v6.0.4.zip`：Windows 一键安装、备份、重复安装和卸载恢复。
-- `SunlessSeaCN-macOS-v6.0.5.zip`：针对 Unity 6/macOS 的静态 Managed UI 补丁、文本 addon 和一键安装/卸载；安装器只向 Unity 6 当前数据目录安装。
+- `SunlessSeaCN-macOS-v6.0.6.zip`：针对 Unity 6/macOS 的静态 Managed UI 补丁、文本 addon 和一键安装/卸载；安装器只向 Unity 6 当前数据目录安装。
 
 ## 汉化实机截图
 
@@ -21,24 +21,24 @@
 
 下面是本项目实际测试所对应的游戏版本，不要把补丁版本 `6.0.4` 误认为游戏版本号：
 
-本版本对应 [Steam 官方公告《Maintenance update》](https://store.steampowered.com/news/app/304650/view/714534317091455363)（2026 年 7 月 29 日）。公告说明该次更新升级了 Sunless Sea 的 Unity 版本，并修复了部分发售后内容无法正确同步到存档的问题；公告记录的 Steam BuildID 是 `24437295`。本项目正是针对这个更新后的版本制作并完成 Windows 实机验证。
+Windows 包仍对应 [Steam 官方公告《Maintenance update》](https://store.steampowered.com/news/app/304650/view/714534317091455363)（2026 年 7 月 29 日）后的 Unity 6 版本。macOS 6.0.6 已重新适配本机 2026 年 9 月更新后的 Steam BuildID `24946998`；两个平台的安装包按各自文件名和下表范围使用。
 
 | 项目 | 已验证信息 |
 | --- | --- |
 | 游戏 | Steam《Sunless Sea》 |
 | Steam AppID | `304650` |
-| Steam BuildID | `24437295` |
+| Steam BuildID | Windows `24437295`；macOS `24946998` |
 | 可执行文件/Unity | `6000.3.2.11106207` / `6000.3.2f1` |
 | Unity 提交标识 | `a9779f353c9b` |
 | 操作系统实机测试 | Windows 64-bit；macOS universal Steam app |
-| Mod 加载器 | Windows BepInEx `5.4.23.5`；macOS v6.0.5 静态 Managed Bootstrap |
+| Mod 加载器 | Windows BepInEx `5.4.23.5`；macOS v6.0.6 静态 Managed Bootstrap |
 | 中文插件 | `SunlessSeaChineseTranslation 6.0.0` |
 | 文本内容 | `Sunless_sea_CN_reborn`，17 个 JSON addon 文件 |
 | DLC | Zubmariner（潜艇 DLC）文本随完整 addon 打包；DLC 本身需另购并安装 |
 
 Windows 实机日志已确认 BepInEx 和中文插件正常加载，并应用 Sunless Sea 的 Harmony 补丁。若 Steam 将游戏更新到新的 BuildID 或 Unity 主版本，**不能保证 6.0.4 仍然可用**；遇到插件不加载、启动崩溃或文本失效时，应等待本仓库发布兼容更新。
 
-macOS v6.0.5 绑定同一 BuildID/hash：安装器拒绝不匹配的 `Sunless.Game.dll`，使用 `/usr/bin/bspatch` 临时生成并校验目标文件，再对 app 做 ad-hoc codesign strict verify。macOS 玩家数据目录使用 `~/Library/Application Support/com.failbettergames.sunlesssea`；旧版 `unity.Failbetter Games.Sunless Sea` 不会因为存在旧存档而被优先选中。
+macOS v6.0.6 绑定 BuildID `24946998` 的程序集 hash：安装器拒绝不匹配的 `Sunless.Game.dll`，使用 `/usr/bin/bspatch` 临时生成并校验目标文件，再对 app 做 ad-hoc codesign strict verify。若 Steam 已覆盖旧补丁但留下旧安装清单，新安装器会保留新版游戏文件并迁移旧补丁。macOS 玩家数据目录使用 `~/Library/Application Support/com.failbettergames.sunlesssea`。
 
 ## 包含内容
 
@@ -68,7 +68,7 @@ macOS v6.0.5 绑定同一 BuildID/hash：安装器拒绝不匹配的 `Sunless.Ga
 
 ### macOS
 
-1. 解压 `SunlessSeaCN-macOS-v6.0.5.zip`。安装包可以放在下载文件夹、桌面或其他本地目录，不需要放进游戏目录。
+1. 解压 `SunlessSeaCN-macOS-v6.0.6.zip`。安装包可以放在下载文件夹、桌面或其他本地目录，不需要放进游戏目录。
 2. 直接双击 `Install-And-Start-SunlessSeaCN.command`；它会校验游戏 BuildID 对应的 `Sunless.Game.dll`，应用 bsdiff 静态 UI 补丁，把 addon 写入 Unity 6 数据目录，并启动游戏。不需要设置 Steam 启动项。
 3. 如果只想安装不启动，双击 `Install-SunlessSeaCN.command`。
 
@@ -96,11 +96,11 @@ xattr -dr com.apple.quarantine "$HOME/Library/Application Support/Steam/steamapp
 
 ### 能不能不用设置，点击一个文件就完成？
 
-可以。macOS v6.0.5 解压后双击 `Install-And-Start-SunlessSeaCN.command`，会自动校验并安装静态补丁、文本 addon，然后打开游戏，不需要设置 Steam 启动项。macOS 对未签名的下载文件仍可能显示一次系统安全确认，这是系统的正常保护提示。
+可以。macOS v6.0.6 解压后双击 `Install-And-Start-SunlessSeaCN.command`，会自动校验并安装静态补丁、文本 addon，然后打开游戏，不需要设置 Steam 启动项。macOS 对未签名的下载文件仍可能显示一次系统安全确认，这是系统的正常保护提示。
 
 ### Sunless Sea 汉化支持哪个版本？
 
-当前明确验证的是 Steam AppID `304650`、BuildID `24437295`、Unity `6000.3.2f1`（Unity 内部版本 `6000.3.2.11106207`）。其他 BuildID 可能可以运行，但不属于本版的实机验证范围。
+当前 macOS 明确验证的是 Steam AppID `304650`、BuildID `24946998`、Unity `6000.3.2f1`。Windows 6.0.4 仍对应 BuildID `24437295`。其他 BuildID 可能可以运行，但不属于本版的实机验证范围。
 
 ### 支持 Zubmariner 潜艇 DLC 吗？
 
@@ -108,7 +108,7 @@ xattr -dr com.apple.quarantine "$HOME/Library/Application Support/Steam/steamapp
 
 ### Windows 和 macOS 都能用吗？
 
-Windows 已在上述 Steam 版本上完成实机启动和插件加载验证。macOS v6.0.5 提供 universal 安装包和卸载脚本；它只支持本版本的 Unity 6 Mono Managed DLL hash。
+Windows 6.0.4 已在对应 Steam 版本上完成实机启动和插件加载验证。macOS v6.0.6 提供 universal 安装包和卸载脚本；它只支持 BuildID `24946998` 的 Unity 6 Mono Managed DLL hash。
 
 ### 这是《Sunless Sea》游戏本体吗？
 

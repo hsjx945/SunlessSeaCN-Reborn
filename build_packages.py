@@ -14,7 +14,7 @@ WIN_GAME = Path(r"E:\Program Files (x86)\Steam\steamapps\common\SunlessSea")
 WIN_DATA = Path(r"C:\Users\Lenovo\AppData\LocalLow\Failbetter Games\Sunless Sea")
 MAC_STATIC_BUILD = ROOT / "build" / "macos-static"
 WIN_VERSION = "6.0.4"
-MAC_VERSION = "6.0.5"
+MAC_VERSION = "6.0.6"
 
 
 WIN_PS1 = r'''param(
@@ -433,7 +433,7 @@ def build_macos() -> Path:
         "Uninstall-SunlessSeaCN.command",
     ):
         copy_file(source_macos / name, out / name)
-    mac_readme = """Sunless Sea 中文补丁 6.0.5 - macOS\n\n本版针对 Steam AppID 304650、BuildID 24437295、Unity 6000.3.2f1 的 macOS universal Mono 版本。请先关闭游戏和 Steam 的 Sunless Sea 进程。\n\n安装：双击 Install-And-Start-SunlessSeaCN.command；只安装则双击 Install-SunlessSeaCN.command。安装器将对 Sunless.Game.dll 做版本校验后使用 bsdiff 临时生成目标文件，复制 UI 插件和文本 addon，并对 app 进行 ad-hoc codesign 严格校验。\n\nUnity 6 的玩家数据目录固定优先为：\n  ~/Library/Application Support/com.failbettergames.sunlesssea\n旧版 unity.Failbetter Games.Sunless Sea 目录不会因为存在旧存档而被自动选用。\n\n卸载：双击 Uninstall-SunlessSeaCN.command。安装器会校验补丁文件哈希，只移除仍未被用户修改的文件，并恢复备份；备份目录不会自动删除。\n\n本包不含游戏本体、完整原始 DLL 或完整 patched DLL；Steam 更新后若 Sunless.Game.dll hash 不匹配，安装器会拒绝修改。\n"""
+    mac_readme = """Sunless Sea 中文补丁 6.0.6 - macOS\n\n本版针对 Steam AppID 304650、BuildID 24946998、Unity 6000.3.2f1 的 macOS universal Mono 版本。请先关闭游戏和 Steam 的 Sunless Sea 进程。\n\n安装：双击 Install-And-Start-SunlessSeaCN.command；只安装则双击 Install-SunlessSeaCN.command。安装器将对 Sunless.Game.dll 做版本校验后使用 bsdiff 临时生成目标文件，复制 UI 插件和文本 addon，并对 app 进行 ad-hoc codesign 严格校验。Steam 覆盖旧补丁后，新安装器会保留新版游戏文件并安全迁移旧清单。\n\nUnity 6 的玩家数据目录固定优先为：\n  ~/Library/Application Support/com.failbettergames.sunlesssea\n旧版 unity.Failbetter Games.Sunless Sea 目录不会因为存在旧存档而被自动选用。\n\n卸载：双击 Uninstall-SunlessSeaCN.command。安装器会校验补丁文件哈希，只移除仍未被用户修改的文件，并恢复备份；备份目录不会自动删除。\n\n本包不含游戏本体、完整原始 DLL 或完整 patched DLL；Steam 更新后若 Sunless.Game.dll hash 不匹配，安装器会拒绝修改。\n"""
     write_text(out / "README-安装说明.txt", mac_readme)
     write_text(out / "THIRD-PARTY-NOTICES.txt", PACKAGE_NOTICE + "\n\n4. 静态 UI 路线：本 macOS 包复用 tinygrox/SunlessSeaCN GPL-3.0 源码快照，新增 Bootstrap 与 Mono.Cecil 注入器；对应源码和归属见仓库 macos-static/。\n\n5. Harmony：Lib.Harmony 2.4.2，MIT；NuGet nupkg SHA-256 见 SOURCES-LOCK.json。\n")
     copy_file(ROOT / "packaging" / "macos" / "sources.lock.json", out / "SOURCES-LOCK.json")
